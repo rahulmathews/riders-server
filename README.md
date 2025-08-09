@@ -61,8 +61,8 @@ Riders Server is the backbone of a ride-sharing application that connects passen
 - **Docker** - Containerized development and deployment
 - **Docker Compose** - Multi-service orchestration
 - **GitHub Actions** - CI/CD pipeline
-- **Jest** - Unit and integration testing
 - **Nginx** - Reverse proxy and load balancing
+- **Note:** Testing framework (Jest) moved to low priority phase
 
 ## 📁 Project Structure
 
@@ -188,13 +188,11 @@ npm run db:seed
 # Start development server
 npm run start:dev
 
-# Run tests
-npm run test
-npm run test:e2e
-
 # Build for production
 npm run build
 npm run start:prod
+
+# Note: Testing moved to low priority - test scripts removed from package.json
 ```
 
 ### Docker Development
