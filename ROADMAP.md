@@ -22,8 +22,8 @@ We will create a new branch called `api-mvp` from the `main` branch and implemen
 - [x] Implement ESLint with NestJS, TypeScript, and security rules
 - [x] Set up Prettier for consistent code formatting
 - [x] Configure Husky for pre-commit hooks
-- [ ] Implement conventional commits with Commitizen
-- [ ] Set up commit message linting with commitlint
+- [x] Set up commit message linting with commitlint
+- [ ] Configure semantic release for automated versioning
 - [ ] Implement environment-specific configurations (.env files)
 - [ ] Configure path aliases for clean imports (@src, @modules, etc.)
 - [ ] Set up source maps for debugging

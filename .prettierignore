@@ -42,8 +42,8 @@ package.json
 *.tsbuildinfo
 
 # IDE files
-.vscode/
 .idea/
+.vscode/
 
 # OS files
 .DS_Store
