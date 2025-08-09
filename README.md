@@ -74,13 +74,25 @@ riders-server/
 │   ├── app.module.ts      # Root application module
 │   ├── app.service.ts     # Main application service
 │   └── main.ts            # Application entry point
+├── .github/workflows/     # GitHub Actions workflows
+│   ├── ci.yml             # CI workflow for PRs
+│   └── release.yml        # Release workflow
+├── .husky/                # Git hooks
+│   ├── pre-commit         # Pre-commit quality checks
+│   └── commit-msg         # Commit message validation
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
 ├── .prettierignore        # Prettier ignore patterns
+├── .releaserc.js          # Semantic release configuration
+├── commitlint.config.js   # Commitlint configuration
+├── scripts/               # Release and utility scripts
+│   └── release.sh         # Pre-release management script
 ├── tsconfig.json          # TypeScript configuration
 ├── tsconfig.build.json    # Build-specific TypeScript config
 ├── package.json           # Dependencies and scripts
+├── CHANGELOG.md           # Automated changelog with version history
 ├── README.md              # Project documentation
+├── DEVELOPMENT.md         # Developer guide
 └── ROADMAP.md             # Development roadmap
 ```
 
@@ -116,6 +128,7 @@ This is a basic NestJS application with a robust development foundation:
 - ✅ Prettier code formatting
 - ✅ Husky pre-commit hooks
 - ✅ Commitlint for conventional commits
+- ✅ Semantic release for automated versioning
 
 ## 📚 Documentation
 
@@ -132,6 +145,22 @@ See [ROADMAP.md](ROADMAP.md) for the complete implementation plan:
 - Authentication system
 - Real-time features
 - Payment processing
+
+## 🚀 Release Workflow
+
+This project uses a simplified two-branch approach with automatic version progression:
+
+1. **Development** (`develop`): Ongoing development with alpha/beta/rc versioning
+    - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` → `2.0.0-rc.1`
+2. **Stable** (`main`): Production-ready releases (1.0.0+)
+
+**Features:**
+
+- **Automatic Tags**: Git tags created for each release (`v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
+- **Changelog Generation**: `CHANGELOG.md` automatically updated with categorized commits
+- **GitHub Releases**: Automatic GitHub releases with release notes
+
+**For detailed release process and scripts**, see [DEVELOPMENT.md](DEVELOPMENT.md).
 
 ## 🤝 Contributing
 
@@ -151,7 +180,6 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support and questions, please contact:
 
-- Email: support@riders-app.com
 - Issues: [GitHub Issues](https://github.com/your-username/riders-server/issues)
 
 ## 🗺 Roadmap

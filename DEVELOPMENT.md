@@ -281,14 +281,142 @@ npm update
 npm install package-name@latest
 ```
 
-## 🔄 Release Process (Future)
+## 🔄 Release Process
 
-When semantic-release is implemented:
+This project uses semantic-release for automated versioning and releases with pre-release support:
 
-1. **Commit**: Use conventional commits
-2. **Merge**: to main branch
-3. **Automatic**: Version bump, changelog, GitHub release
-4. **Publish**: Automatic NPM publishing (if applicable)
+### Release Workflow
+The project uses a simplified two-branch approach with automatic version progression:
+
+1. **Development** (`develop`): Ongoing development with alpha/beta/rc versioning
+   - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` → `2.0.0-rc.1`
+2. **Stable** (`main`): Production-ready releases (1.0.0+)
+
+### Branch Strategy
+- **`develop`**: Development branch with alpha/beta/rc versioning
+  - `0.x.x-alpha.x`: Alpha phase (early development)
+  - `1.x.x-beta.x`: Beta phase (feature complete)
+  - `2.x.x-rc.x`: RC phase (release candidate)
+- **`main`**: Stable releases (production-ready versions without pre-release labels)
+
+### How It Works
+1. **Development**: Work on `develop` branch with conventional commits
+2. **Automatic Versioning**: semantic-release automatically bumps versions based on commit types
+3. **Push**: to `develop` branch for development releases, `main` for stable releases
+4. **Automatic Process**:
+   - Version bump in `package.json`
+   - Generate release notes from commits
+   - Update `CHANGELOG.md` with new version and commits
+   - Create Git tag (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
+   - Create GitHub release with release notes
+   - Commit updated `CHANGELOG.md` and `package.json` back to repository
+5. **CI/CD**: GitHub Actions handles the entire release process
+
+### Version Bumping Rules
+- **Major** (`1.0.0` → `2.0.0`): Breaking changes (`feat!`, `fix!`, etc.)
+- **Minor** (`1.0.0` → `1.1.0`): New features (`feat:`)
+- **Patch** (`1.0.0` → `1.0.1`): Bug fixes, docs, refactors (`fix:`, `docs:`, `style:`, etc.)
+
+### Release Examples
+```bash
+# Development (automatic version progression with alpha/beta/rc labels)
+git commit -m "feat: add user authentication"
+git push origin develop  # Creates 0.2.0-alpha.1 (minor bump)
+
+git commit -m "fix: resolve login bug"
+git push origin develop  # Creates 0.2.1-alpha.1 (patch bump)
+
+git commit -m "feat!: breaking change in API"
+git push origin develop  # Creates 1.0.0-beta.1 (major bump - Beta phase)
+
+git commit -m "feat: final features before release"
+git push origin develop  # Creates 2.0.0-rc.1 (major bump - RC phase)
+
+# Stable release (when ready for production)
+npm run release:stable
+git push origin main     # Creates stable release (e.g., 2.0.0) without pre-release labels
+```
+
+### Release Scripts
+```bash
+# Automated release scripts
+npm run release:develop  # Switch to develop branch for development
+npm run release:stable   # Switch to main branch for stable release
+
+# Manual semantic-release
+npm run release          # Run semantic-release locally (dry-run)
+npm run release -- --dry-run  # Test release without publishing
+```
+
+### GitHub Actions
+- **CI**: Runs on PRs and pushes to main and develop branches
+- **Release**: Automatically triggered on pushes to main and develop branches
+- **Changelog**: Generated automatically in CHANGELOG.md with proper version sections
+- **Tags**: Git tags created for each release (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
+- **GitHub Releases**: Automatic GitHub releases with release notes and changelog
+
+### Tags and Changelog Management
+
+#### Git Tags
+- **Automatic Creation**: Each release creates a Git tag with the version number
+- **Tag Format**: `v{version}` (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
+- **Tag History**: View all tags with `git tag -l` or `git tag --sort=-version:refname`
+- **Tag Details**: `git show v1.0.0-beta.1` to see release details
+
+**Useful Tag Commands:**
+```bash
+# List all tags
+git tag -l
+
+# List tags sorted by version (newest first)
+git tag --sort=-version:refname
+
+# Show details of a specific tag
+git show v1.0.0-beta.1
+
+# Show commits between two tags
+git log v0.1.0-alpha.1..v1.0.0-beta.1 --oneline
+
+# Delete a local tag (if needed)
+git tag -d v1.0.0-beta.1
+
+# Push tags to remote
+git push origin --tags
+```
+
+#### CHANGELOG.md Structure
+The changelog is automatically maintained with this structure:
+
+```markdown
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+## [2.0.0] - 2024-01-15
+### Added
+- New feature A
+- New feature B
+
+### Changed
+- Updated existing feature
+
+### Fixed
+- Bug fix
+
+## [1.0.0-beta.1] - 2024-01-10
+### Added
+- Beta feature
+
+## [0.2.0-alpha.1] - 2024-01-05
+### Added
+- Alpha feature
+```
+
+#### Commit Tracking
+- **Conventional Commits**: All commits are analyzed and categorized
+- **Version Sections**: Each version gets its own section with categorized changes
+- **Breaking Changes**: Highlighted with special formatting
+- **Release Notes**: Generated from commit messages and included in GitHub releases
 
 ## 🤝 Contributing Workflow
 

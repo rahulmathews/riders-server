@@ -23,7 +23,7 @@ We will create a new branch called `api-mvp` from the `main` branch and implemen
 - [x] Set up Prettier for consistent code formatting
 - [x] Configure Husky for pre-commit hooks
 - [x] Set up commit message linting with commitlint
-- [ ] Configure semantic release for automated versioning
+- [x] Configure semantic release for automated versioning
 - [ ] Implement environment-specific configurations (.env files)
 - [ ] Configure path aliases for clean imports (@src, @modules, etc.)
 - [ ] Set up source maps for debugging

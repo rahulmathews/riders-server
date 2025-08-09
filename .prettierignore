@@ -12,10 +12,14 @@ nest-cli.json
 tsconfig*.json
 .prettierrc
 .gitignore
+.releaserc.js
 
 # Documentation files
 *.md
 LICENSE
+
+# Keep semantic-release generated changelog
+!CHANGELOG.md
 
 # Logs
 *.log
