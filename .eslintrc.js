@@ -26,7 +26,13 @@ module.exports = {
     node: true,
     es2022: true,
   },
-  ignorePatterns: ['.eslintrc.js', 'dist/**/*'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    'dist/**/*',
+    'node_modules/**/*',
+    '*.js',
+    '!src/**/*',
+  ],
   settings: {
     'import/resolver': {
       typescript: {

@@ -39,137 +39,52 @@ Riders Server is the backbone of a ride-sharing application that connects passen
 
 ## 🛠 Tech Stack
 
-### Backend Framework
+### Current Implementation
 - **NestJS** - Enterprise-grade Node.js framework with TypeScript
-- **GraphQL** - Flexible API with real-time subscriptions
-- **TypeScript** - Type-safe development throughout
-- **Apollo Server** - GraphQL server implementation
-
-### Database & Authentication
-- **Self-hosted Supabase** - PostgreSQL with real-time capabilities
-- **PostGIS** - Geospatial data handling for location services
-- **Supabase Auth** - JWT-based authentication with social logins
-- **Row Level Security (RLS)** - Database-level security policies
-
-### External Services
-- **Google Maps API** - Mapping, geocoding, and route calculation
-- **Stripe API** - Payment processing and billing
-- **Twilio** - SMS notifications and phone verification
-- **Push Notifications** - Real-time alerts and updates
-
-### Development & Deployment
 - **TypeScript** - Strict mode enabled with comprehensive type safety
 - **ESLint** - Code quality with security rules and NestJS optimization
-- **Prettier** - Consistent code formatting
-- **Docker** - Containerized development and deployment
-- **Docker Compose** - Multi-service orchestration
-- **GitHub Actions** - CI/CD pipeline
-- **Nginx** - Reverse proxy and load balancing
+- **Prettier** - Consistent code formatting (80 char width, single quotes, trailing commas)
+
+### Planned Features (See ROADMAP.md)
+- **GraphQL** - Flexible API with real-time subscriptions
+- **Self-hosted Supabase** - PostgreSQL with real-time capabilities
+- **Authentication & Authorization** - JWT-based auth system
+- **Real-time Features** - Live location tracking and notifications
+- **Payment Integration** - Stripe payment processing
+- **External APIs** - Google Maps, Twilio SMS, Push notifications
+- **Deployment** - Docker, CI/CD, Production infrastructure
 
 ## 📁 Project Structure
 
 ```
 riders-server/
-├── src/
-│   ├── modules/           # Feature modules (NestJS)
-│   │   ├── auth/          # Authentication module
-│   │   ├── users/         # User management
-│   │   ├── rides/         # Ride operations
-│   │   ├── locations/     # Location tracking
-│   │   ├── payments/      # Payment processing
-│   │   └── notifications/ # Push notifications
-│   ├── common/            # Shared utilities
-│   │   ├── guards/        # Auth guards
-│   │   ├── decorators/    # Custom decorators
-│   │   ├── dto/           # Data transfer objects
-│   │   └── entities/      # Database entities
-│   ├── config/            # Configuration files
-│   ├── graphql/           # GraphQL schema files
+├── src/                   # Source code
+│   ├── app.controller.ts  # Main application controller
+│   ├── app.module.ts      # Root application module
+│   ├── app.service.ts     # Main application service
 │   └── main.ts            # Application entry point
-├── test/                  # Test files
-├── docs/                  # API documentation
-├── docker/                # Docker configuration
-│   ├── Dockerfile         # Main application
-│   ├── docker-compose.yml # Multi-service setup
-│   └── supabase/          # Supabase configuration
-└── scripts/               # Deployment scripts
+├── .eslintrc.js           # ESLint configuration
+├── .prettierrc            # Prettier configuration
+├── .prettierignore        # Prettier ignore patterns
+├── tsconfig.json          # TypeScript configuration
+├── tsconfig.build.json    # Build-specific TypeScript config
+├── package.json           # Dependencies and scripts
+├── README.md              # Project documentation
+└── ROADMAP.md             # Development roadmap
 ```
 
-## 🚀 GraphQL API
+## 🚀 Current API
 
-### Queries
-```graphql
-# User Management
-query GetProfile { user { id name email phone role } }
-query GetRideHistory { rides { id status fare createdAt } }
+Basic NestJS REST API with a simple "Hello World" endpoint.
 
-# Ride Management
-query GetActiveRides { activeRides { id rider driver status } }
-query GetNearbyDrivers($location: LocationInput!) { 
-  nearbyDrivers(location: $location) { id user location vehicle }
-}
-```
-
-### Mutations
-```graphql
-# Authentication
-mutation Register($input: RegisterInput!) { register(input: $input) { user token } }
-mutation Login($input: LoginInput!) { login(input: $input) { user token } }
-
-# Ride Operations
-mutation RequestRide($input: RideRequestInput!) { 
-  requestRide(input: $input) { id status pickupLocation dropoffLocation }
-}
-mutation AcceptRide($rideId: ID!) { acceptRide(rideId: $rideId) { id status driver } }
-mutation CompleteRide($rideId: ID!) { completeRide(rideId: $rideId) { id fare receipt } }
-```
-
-### Subscriptions (Real-time)
-```graphql
-# Live Updates
-subscription RideStatusUpdated($rideId: ID!) { 
-  rideStatusUpdated(rideId: $rideId) { id status driver location }
-}
-subscription DriverLocationUpdated($rideId: ID!) { 
-  driverLocationUpdated(rideId: $rideId) { latitude longitude heading }
-}
-subscription NewRideRequests { 
-  newRideRequests { id rider pickupLocation fare }
-}
-```
+**GraphQL API implementation planned** - See [ROADMAP.md](ROADMAP.md) for detailed implementation timeline.
 
 ## 🔧 Development Setup
 
 ### Prerequisites
 - Node.js (v18+)
-- Docker & Docker Compose
+- npm or yarn
 - Git
-
-### Environment Variables
-```bash
-# Supabase Configuration
-SUPABASE_URL=http://localhost:54321
-SUPABASE_ANON_KEY=your-supabase-anon-key
-SUPABASE_SERVICE_KEY=your-supabase-service-key
-DATABASE_URL=postgresql://postgres:password@localhost:54322/postgres
-
-# JWT Configuration (from Supabase)
-JWT_SECRET=your-supabase-jwt-secret
-JWT_EXPIRES_IN=24h
-
-# External APIs
-GOOGLE_MAPS_API_KEY=your-google-maps-key
-STRIPE_SECRET_KEY=sk_test_your-stripe-key
-STRIPE_PUBLISHABLE_KEY=pk_test_your-stripe-key
-TWILIO_ACCOUNT_SID=your-twilio-sid
-TWILIO_AUTH_TOKEN=your-twilio-token
-
-# Server Configuration
-PORT=3000
-NODE_ENV=development
-GRAPHQL_PLAYGROUND=true
-GRAPHQL_INTROSPECTION=true
-```
 
 ### Installation & Running
 ```bash
@@ -187,78 +102,26 @@ npm run start:dev
 npm run build
 npm run start:prod
 
-# Code quality checks
-npm run lint
-npm run format
+# Code quality and formatting
+npm run lint          # Check and fix ESLint issues
+npm run lint:check     # Check ESLint issues only (no auto-fix)
+npm run format         # Format code with Prettier
+npm run format:check   # Check code formatting (no changes)
 ```
 
 
 
-### Docker Development
-```bash
-# Start all services with Docker Compose
-docker-compose up -d
+## 📋 Current Status
 
-# View GraphQL Playground
-open http://localhost:3000/graphql
+This is a basic NestJS application with TypeScript, ESLint, and Prettier configured. 
 
-# Access Supabase Studio
-open http://localhost:54323
-```
-
-## 📊 Database Schema
-
-### Core Tables (Supabase/PostgreSQL)
-- **auth.users** - Supabase authentication (managed)
-- **public.profiles** - Extended user profiles (riders & drivers)
-- **public.rides** - Ride requests and trip data
-- **public.vehicles** - Driver vehicle information
-- **public.payments** - Payment transactions and billing
-- **public.reviews** - Ratings and feedback system
-- **public.locations** - Real-time GPS tracking (with PostGIS)
-- **public.notifications** - Push notification history
-
-### PostGIS Extensions
-- **Geospatial Queries** - Find nearby drivers within radius
-- **Route Optimization** - Calculate optimal pickup routes
-- **Geofencing** - Service area restrictions and boundaries
-
-## 🔐 Security Features
-
-- **JWT Authentication** - Secure token-based auth
-- **Rate Limiting** - API abuse prevention
-- **Input Validation** - Request sanitization
-- **HTTPS Only** - Encrypted connections
-- **CORS Protection** - Cross-origin security
-- **SQL Injection Prevention** - Parameterized queries
-
-## 🚀 Deployment
-
-### Docker Deployment
-```bash
-# Build and start all services
-docker-compose up -d --build
-
-# Scale the application
-docker-compose up -d --scale app=3
-
-# View logs
-docker-compose logs -f app
-```
-
-### Production Deployment
-- **Self-hosted Supabase** - Full control over database and auth
-- **Docker Swarm/Kubernetes** - Container orchestration
-- **Nginx** - Reverse proxy and SSL termination
-- **Let's Encrypt** - Free SSL certificates
-- **Monitoring** - Prometheus + Grafana for metrics
-
-## 📈 Monitoring & Analytics
-
-- **Health Checks** - Service availability monitoring
-- **Performance Metrics** - Response time tracking
-- **Error Logging** - Comprehensive error tracking
-- **Business Analytics** - Ride and revenue metrics
+**Next Steps:** See [ROADMAP.md](ROADMAP.md) for the complete implementation plan including:
+- GraphQL API setup
+- Database integration
+- Authentication system
+- Real-time features
+- Payment processing
+- Deployment infrastructure
 
 ## 🤝 Contributing
 
