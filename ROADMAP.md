@@ -19,7 +19,7 @@ We will create a new branch called `api-mvp` from the `main` branch and implemen
 
 - [x] Project initialization and repository setup
 - [x] Configure TypeScript with strict mode enabled for NestJS
-- [ ] Implement ESLint with NestJS, TypeScript, and security rules
+- [x] Implement ESLint with NestJS, TypeScript, and security rules
 - [ ] Set up Prettier for consistent code formatting
 - [ ] Configure Husky for pre-commit hooks
 - [ ] Implement conventional commits with Commitizen

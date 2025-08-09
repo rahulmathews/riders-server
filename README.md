@@ -58,11 +58,13 @@ Riders Server is the backbone of a ride-sharing application that connects passen
 - **Push Notifications** - Real-time alerts and updates
 
 ### Development & Deployment
+- **TypeScript** - Strict mode enabled with comprehensive type safety
+- **ESLint** - Code quality with security rules and NestJS optimization
+- **Prettier** - Consistent code formatting
 - **Docker** - Containerized development and deployment
 - **Docker Compose** - Multi-service orchestration
 - **GitHub Actions** - CI/CD pipeline
 - **Nginx** - Reverse proxy and load balancing
-- **Note:** Testing framework (Jest) moved to low priority phase
 
 ## 📁 Project Structure
 
@@ -178,22 +180,19 @@ cd riders-server
 # Install dependencies
 npm install
 
-# Start Supabase locally
-npx supabase start
-
-# Run database migrations
-npm run db:migrate
-npm run db:seed
-
-# Start development server
+# Start development server with hot reload
 npm run start:dev
 
 # Build for production
 npm run build
 npm run start:prod
 
-# Note: Testing moved to low priority - test scripts removed from package.json
+# Code quality checks
+npm run lint
+npm run format
 ```
+
+
 
 ### Docker Development
 ```bash
