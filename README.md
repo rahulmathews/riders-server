@@ -44,6 +44,7 @@ Riders Server is the backbone of a ride-sharing application that connects passen
 - **TypeScript** - Strict mode enabled with comprehensive type safety
 - **ESLint** - Code quality with security rules and NestJS optimization
 - **Prettier** - Consistent code formatting (80 char width, single quotes, trailing commas)
+- **Husky** - Pre-commit hooks for automatic code quality checks
 
 ### Planned Features (See ROADMAP.md)
 - **GraphQL** - Flexible API with real-time subscriptions
@@ -107,6 +108,10 @@ npm run lint          # Check and fix ESLint issues
 npm run lint:check     # Check ESLint issues only (no auto-fix)
 npm run format         # Format code with Prettier
 npm run format:check   # Check code formatting (no changes)
+
+# Pre-commit hooks automatically run on git commit:
+# - ESLint with auto-fix on staged .ts files
+# - Prettier formatting on staged .ts and .json files
 ```
 
 
