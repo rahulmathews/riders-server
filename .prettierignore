@@ -18,8 +18,12 @@ tsconfig*.json
 *.md
 LICENSE
 
-# Keep semantic-release generated changelog
+# Allow formatting of important files
 !CHANGELOG.md
+!DEVELOPMENT.md
+!README.md
+!ROADMAP.md
+!package.json
 
 # Logs
 *.log
@@ -40,7 +44,6 @@ pids
 # Package files
 package-lock.json
 yarn.lock
-package.json
 
 # Generated files
 *.tsbuildinfo

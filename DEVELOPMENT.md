@@ -60,7 +60,8 @@ npm run commitlint    # Validate commit message format
 
 ## 📝 Conventional Commits
 
-This project uses conventional commits enforced by commitlint. All commit messages must follow this format:
+This project uses conventional commits enforced by commitlint. All commit
+messages must follow this format:
 
 ```
 <type>[optional scope]: <description>
@@ -73,7 +74,7 @@ This project uses conventional commits enforced by commitlint. All commit messag
 ### Commit Types
 
 | Type       | Description              | Example                                          |
-|------------|--------------------------|--------------------------------------------------|
+| ---------- | ------------------------ | ------------------------------------------------ |
 | `feat`     | New feature              | `feat(auth): add JWT token validation`           |
 | `fix`      | Bug fix                  | `fix(api): resolve user profile update issue`    |
 | `docs`     | Documentation changes    | `docs(readme): update installation instructions` |
@@ -283,26 +284,36 @@ npm install package-name@latest
 
 ## 🔄 Release Process
 
-This project uses semantic-release for automated versioning and releases with pre-release support:
+This project uses semantic-release for automated versioning and releases with
+pre-release support:
 
 ### Release Workflow
-The project uses a simplified two-branch approach with automatic version progression:
 
-1. **Development** (`develop`): Ongoing development with alpha/beta/rc versioning
-   - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` → `2.0.0-rc.1`
+The project uses a simplified two-branch approach with automatic version
+progression:
+
+1. **Development** (`develop`): Ongoing development with alpha/beta/rc
+   versioning
+   - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` →
+     `2.0.0-rc.1`
 2. **Stable** (`main`): Production-ready releases (1.0.0+)
 
 ### Branch Strategy
+
 - **`develop`**: Development branch with alpha/beta/rc versioning
   - `0.x.x-alpha.x`: Alpha phase (early development)
   - `1.x.x-beta.x`: Beta phase (feature complete)
   - `2.x.x-rc.x`: RC phase (release candidate)
-- **`main`**: Stable releases (production-ready versions without pre-release labels)
+- **`main`**: Stable releases (production-ready versions without pre-release
+  labels)
 
 ### How It Works
+
 1. **Development**: Work on `develop` branch with conventional commits
-2. **Automatic Versioning**: semantic-release automatically bumps versions based on commit types
-3. **Push**: to `develop` branch for development releases, `main` for stable releases
+2. **Automatic Versioning**: semantic-release automatically bumps versions based
+   on commit types
+3. **Push**: to `develop` branch for development releases, `main` for stable
+   releases
 4. **Automatic Process**:
    - Version bump in `package.json`
    - Generate release notes from commits
@@ -313,11 +324,14 @@ The project uses a simplified two-branch approach with automatic version progres
 5. **CI/CD**: GitHub Actions handles the entire release process
 
 ### Version Bumping Rules
+
 - **Major** (`1.0.0` → `2.0.0`): Breaking changes (`feat!`, `fix!`, etc.)
 - **Minor** (`1.0.0` → `1.1.0`): New features (`feat:`)
-- **Patch** (`1.0.0` → `1.0.1`): Bug fixes, docs, refactors (`fix:`, `docs:`, `style:`, etc.)
+- **Patch** (`1.0.0` → `1.0.1`): Bug fixes, docs, refactors (`fix:`, `docs:`,
+  `style:`, etc.)
 
 ### Release Examples
+
 ```bash
 # Development (automatic version progression with alpha/beta/rc labels)
 git commit -m "feat: add user authentication"
@@ -338,6 +352,7 @@ git push origin main     # Creates stable release (e.g., 2.0.0) without pre-rele
 ```
 
 ### Release Scripts
+
 ```bash
 # Automated release scripts
 npm run release:develop  # Switch to develop branch for development
@@ -349,21 +364,31 @@ npm run release -- --dry-run  # Test release without publishing
 ```
 
 ### GitHub Actions
+
 - **CI**: Runs on PRs and pushes to main and develop branches
 - **Release**: Automatically triggered on pushes to main and develop branches
-- **Changelog**: Generated automatically in CHANGELOG.md with proper version sections
-- **Tags**: Git tags created for each release (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
-- **GitHub Releases**: Automatic GitHub releases with release notes and changelog
+- **Formatting**: Automatic formatting applied before release to ensure
+  consistency
+- **Changelog**: Generated automatically in CHANGELOG.md with proper version
+  sections
+- **Tags**: Git tags created for each release (e.g., `v0.1.0-alpha.1`,
+  `v1.0.0-beta.1`, `v2.0.0`)
+- **GitHub Releases**: Automatic GitHub releases with release notes and
+  changelog
 
 ### Tags and Changelog Management
 
 #### Git Tags
+
 - **Automatic Creation**: Each release creates a Git tag with the version number
-- **Tag Format**: `v{version}` (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
-- **Tag History**: View all tags with `git tag -l` or `git tag --sort=-version:refname`
+- **Tag Format**: `v{version}` (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`,
+  `v2.0.0`)
+- **Tag History**: View all tags with `git tag -l` or
+  `git tag --sort=-version:refname`
 - **Tag Details**: `git show v1.0.0-beta.1` to see release details
 
 **Useful Tag Commands:**
+
 ```bash
 # List all tags
 git tag -l
@@ -385,6 +410,7 @@ git push origin --tags
 ```
 
 #### CHANGELOG.md Structure
+
 The changelog is automatically maintained with this structure:
 
 ```markdown
@@ -393,30 +419,50 @@ The changelog is automatically maintained with this structure:
 All notable changes to this project will be documented in this file.
 
 ## [2.0.0] - 2024-01-15
+
 ### Added
+
 - New feature A
 - New feature B
 
 ### Changed
+
 - Updated existing feature
 
 ### Fixed
+
 - Bug fix
 
 ## [1.0.0-beta.1] - 2024-01-10
+
 ### Added
+
 - Beta feature
 
 ## [0.2.0-alpha.1] - 2024-01-05
+
 ### Added
+
 - Alpha feature
 ```
 
 #### Commit Tracking
+
 - **Conventional Commits**: All commits are analyzed and categorized
-- **Version Sections**: Each version gets its own section with categorized changes
+- **Version Sections**: Each version gets its own section with categorized
+  changes
 - **Breaking Changes**: Highlighted with special formatting
-- **Release Notes**: Generated from commit messages and included in GitHub releases
+- **Release Notes**: Generated from commit messages and included in GitHub
+  releases
+
+#### Formatting Workflow
+
+- **Local Development**: Husky pre-commit hooks ensure formatting on local
+  commits
+- **CI/CD**: GitHub Actions runs formatting before release to ensure consistency
+- **Release Process**: Files are formatted before semantic-release commits them
+- **Consistency**: Both `CHANGELOG.md` and `package.json` are formatted
+  according to project standards
 
 ## 🤝 Contributing Workflow
 
@@ -441,30 +487,32 @@ All notable changes to this project will be documented in this file.
 #### Code Style & Formatting
 
 1. **File** → **Settings** → **Editor** → **Code Style** → **TypeScript**
-    - Set indent: 2 spaces
-    - Enable "Use single quotes in new code"
+   - Set indent: 2 spaces
+   - Enable "Use single quotes in new code"
 
 2. **File** → **Settings** → **Tools** → **Actions on Save**
-    - ✅ Reformat code
-    - ✅ Optimize imports
-    - ✅ Run eslint --fix
+   - ✅ Reformat code
+   - ✅ Optimize imports
+   - ✅ Run eslint --fix
 
 #### ESLint Configuration
 
-1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** → **Code Quality Tools** → **ESLint**
-    - ✅ Automatic ESLint configuration
-    - ✅ Run eslint --fix on save
+1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** →
+   **Code Quality Tools** → **ESLint**
+   - ✅ Automatic ESLint configuration
+   - ✅ Run eslint --fix on save
 
 #### Prettier Configuration
 
-1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** → **Prettier**
-    - ✅ On 'Reformat Code' action
-    - ✅ On save
+1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** →
+   **Prettier**
+   - ✅ On 'Reformat Code' action
+   - ✅ On save
 
 #### Git Integration
 
 1. **File** → **Settings** → **Version Control** → **Git**
-    - ✅ Use credential helper
+   - ✅ Use credential helper
 2. **VCS** → **Git** → **Commit Template**: Use conventional commit format
 
 #### Run Configurations
@@ -473,16 +521,17 @@ WebStorm automatically detects npm scripts. Create additional configurations:
 
 1. **Run** → **Edit Configurations** → **Add** → **npm**
 2. Useful configurations:
-    - **Development**: Script `start:dev`
-    - **Debug**: Script `start:debug`
-    - **Build**: Script `build`
-    - **Lint**: Script `lint`
+   - **Development**: Script `start:dev`
+   - **Debug**: Script `start:debug`
+   - **Build**: Script `build`
+   - **Lint**: Script `lint`
 
 #### WebStorm Project Setup
 
 1. **Open Project**: File → Open → Select the project directory
 2. **Trust Project**: Click "Trust Project" when prompted
-3. **Dependencies**: WebStorm will detect package.json and offer to run `npm install`
+3. **Dependencies**: WebStorm will detect package.json and offer to run
+   `npm install`
 4. **TypeScript**: Automatically configured from tsconfig.json
 
 ### Git Configuration
