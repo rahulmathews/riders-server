@@ -365,8 +365,10 @@ npm run release -- --dry-run  # Test release without publishing
 
 ### GitHub Actions
 
-- **CI**: Runs on PRs and pushes to main and develop branches
-- **Release**: Automatically triggered on pushes to main and develop branches
+- **Unified Pipeline**: Single CI → Release workflow for better flow control
+- **CI Stage**: Runs on PRs and pushes to main and develop branches
+- **Release Stage**: Automatically triggered on pushes to main and develop
+  branches (only if CI passes)
 - **Formatting**: Automatic formatting applied before release to ensure
   consistency
 - **Changelog**: Generated automatically in CHANGELOG.md with proper version

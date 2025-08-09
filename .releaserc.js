@@ -1,4 +1,5 @@
 module.exports = {
+  repositoryUrl: 'https://github.com/rahulmathews/riders-server.git',
   branches: [
     'main',
     {

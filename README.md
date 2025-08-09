@@ -80,8 +80,7 @@ riders-server/
 │   ├── app.service.ts     # Main application service
 │   └── main.ts            # Application entry point
 ├── .github/workflows/     # GitHub Actions workflows
-│   ├── ci.yml             # CI workflow for PRs
-│   └── release.yml        # Release workflow
+│   └── ci-release.yml     # Unified CI and Release workflow
 ├── .husky/                # Git hooks
 │   ├── pre-commit         # Pre-commit quality checks
 │   └── commit-msg         # Commit message validation
@@ -168,6 +167,7 @@ progression:
 
 **Features:**
 
+- **Unified Pipeline**: Single CI → Release workflow for better flow control
 - **Automatic Tags**: Git tags created for each release (`v0.1.0-alpha.1`,
   `v1.0.0-beta.1`, `v2.0.0`)
 - **Changelog Generation**: `CHANGELOG.md` automatically updated with
