@@ -561,7 +561,6 @@ Release Date: {{formattedReleaseDate}}
       '@semantic-release/npm',
       {
         npmPublish: false,
-        tarballDir: 'dist',
         prepareCmd: 'npm run build',
       },
     ],
