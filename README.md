@@ -92,7 +92,7 @@ riders-server/
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
 ├── .prettierignore        # Prettier ignore patterns
-├── .releaserc.js          # Enhanced semantic release configuration with build artifacts
+├── .releaserc.js          # Enhanced semantic release configuration with lightweight releases
 ├── commitlint.config.js   # Commitlint configuration
 ├── scripts/               # Utility scripts
 ├── tsconfig.json          # TypeScript configuration
@@ -179,7 +179,7 @@ progression:
 - **Enhanced Changelog**: Rich emoji-based sections with timestamps and author links
 - **Commit Tracking**: Short hash display with links to full commit details
 - **Formatted Timestamps**: CST/CDT timezone with AM/PM format
-- **Build Artifacts**: Production-ready compiled assets included as a single release asset
+- **Lightweight Releases**: Clean releases without build artifacts for faster deployment
 - **GitHub Releases**: Automatic GitHub releases with detailed release notes
 
 **For detailed release process and scripts**, see

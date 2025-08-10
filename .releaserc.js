@@ -572,8 +572,7 @@ Release Date: {{formattedReleaseDate}}
           'CHANGELOG.md', 
           'package.json', 
           'package-lock.json', 
-          'README.md',
-          'dist'
+          'README.md'
         ],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
@@ -583,12 +582,7 @@ Release Date: {{formattedReleaseDate}}
       [
         '@semantic-release/github',
         {
-          assets: [
-            {
-              path: 'dist',
-              label: 'build',
-            },
-          ],
+          // No assets included - keeping releases lightweight
         },
       ],
     ] : []),
