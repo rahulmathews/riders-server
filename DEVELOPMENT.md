@@ -358,10 +358,13 @@ git push origin main     # Creates stable release (e.g., 2.0.0) without pre-rele
 npm run release:develop  # Switch to develop branch for development
 npm run release:stable   # Switch to main branch for stable release
 
-# Manual semantic-release
-npm run release          # Run semantic-release locally (dry-run)
-npm run release -- --dry-run  # Test release without publishing
+# Manual semantic-release (for testing only)
+npm run release -- --dry-run  # Test release without publishing (local testing only)
 ```
+
+> **⚠️ Important**: Don't run `npm run release` locally without `--dry-run`.
+> Semantic-release is designed to run in CI/CD environments with proper tokens.
+> Always use `--dry-run` for local testing.
 
 ### GitHub Actions
 
