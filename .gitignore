@@ -1,5 +1,6 @@
 # compiled output
 /dist
+/build
 /node_modules
 
 # Logs
@@ -77,6 +78,9 @@ node_modules/
 
 # Output of 'npm pack'
 *.tgz
+
+# Build artifacts
+*.tsbuildinfo
 
 # Yarn Integrity file
 .yarn-integrity

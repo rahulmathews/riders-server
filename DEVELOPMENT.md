@@ -321,6 +321,102 @@ riders-server/
 └── ROADMAP.md             # Development roadmap
 ```
 
+## 🗂️ Path Aliases
+
+The project uses TypeScript path aliases for clean and maintainable imports. This eliminates the need for relative paths
+and makes the codebase more organized.
+
+### Available Aliases
+
+| Alias           | Path            | Description                      |
+|-----------------|-----------------|----------------------------------|
+| `@src/*`        | `src/*`         | Source code root                 |
+| `@config/*`     | `src/config/*`  | Configuration modules            |
+| `@modules/*`    | `src/modules/*` | Feature modules                  |
+| `@common/*`     | `src/common/*`  | Common utilities and shared code |
+| `@interfaces/*` | `src/types/*`   | Type definitions and interfaces  |
+| `@/*`           | `src/*`         | Short alias for source root      |
+
+### Usage Examples
+
+```typescript
+// ✅ Good - Using path aliases
+import {AppController} from '@src/app.controller';
+import {AppService} from '@src/app.service';
+import {AppConfigModule} from '@config/config.module';
+import {UsersModule} from '@modules/users/users.module';
+import {User} from '@interfaces/user.interface';
+import {formatDate} from '@common/utils/date.utils';
+
+// ❌ Avoid - Relative paths
+import {AppController} from './app.controller';
+import {AppService} from '../app.service';
+import {ConfigModule} from '../../config/config.module';
+```
+
+### Directory Structure
+
+```
+src/
+├── config/           # @config/* - Configuration modules
+│   ├── config.module.ts
+│   └── env.config.ts
+├── modules/          # @modules/* - Feature modules
+│   └── users/
+│       ├── users.module.ts
+│       ├── users.controller.ts
+│       └── users.service.ts
+├── common/           # @common/* - Shared utilities
+│   └── utils/
+│       └── date.utils.ts
+├── types/            # @interfaces/* - Type definitions
+│   └── user.interface.ts
+├── app.controller.ts # @src/app.controller
+├── app.module.ts     # @src/app.module
+├── app.service.ts    # @src/app.service
+└── main.ts          # @src/main
+```
+
+### Benefits
+
+1. **Clean Imports**: No more `../../../` relative paths
+2. **Maintainability**: Easy to move files without breaking imports
+3. **Readability**: Clear indication of what you're importing
+4. **IDE Support**: Better IntelliSense and auto-completion
+5. **Consistency**: Standardized import patterns across the project
+
+### Configuration
+
+Path aliases are configured in `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@config/*": [
+        "src/config/*"
+      ],
+      "@modules/*": [
+        "src/modules/*"
+      ],
+      "@common/*": [
+        "src/common/*"
+      ],
+      "@interfaces/*": [
+        "src/types/*"
+      ],
+      "@/*": [
+        "src/*"
+      ]
+    }
+  }
+}
+```
+
 ## 🚨 Common Issues & Solutions
 
 ### ESLint Errors
@@ -581,16 +677,20 @@ Release Date: Jan 15, 2024, 2:30 PM CST
 
 ### ✨ Features
 
-- New feature A ([abc1234](https://github.com/rahulmathews/riders-server/commit/abc1234)) - Jan 15, 2024, 2:15 PM CST by [Rahul](mailto:user@example.com)
-- New feature B ([def5678](https://github.com/rahulmathews/riders-server/commit/def5678)) - Jan 15, 2024, 1:45 PM CST by [Rahul](mailto:user@example.com)
+- New feature A ([abc1234](https://github.com/rahulmathews/riders-server/commit/abc1234)) - Jan 15, 2024, 2:15 PM CST
+  by [Rahul](mailto:user@example.com)
+- New feature B ([def5678](https://github.com/rahulmathews/riders-server/commit/def5678)) - Jan 15, 2024, 1:45 PM CST
+  by [Rahul](mailto:user@example.com)
 
 ### 🔀 Pull Requests
 
-- Merged branch feature/new-features ([ghi9012](https://github.com/rahulmathews/riders-server/commit/ghi9012)) - Jan 15, 2024, 1:30 PM CST by [Rahul](mailto:user@example.com)
+- Merged branch feature/new-features ([ghi9012](https://github.com/rahulmathews/riders-server/commit/ghi9012)) - Jan 15,
+  2024, 1:30 PM CST by [Rahul](mailto:user@example.com)
 
 ### 🐛 Bug Fixes
 
-- Bug fix ([jkl3456](https://github.com/rahulmathews/riders-server/commit/jkl3456)) - Jan 15, 2024, 1:00 PM CST by [Rahul](mailto:user@example.com)
+- Bug fix ([jkl3456](https://github.com/rahulmathews/riders-server/commit/jkl3456)) - Jan 15, 2024, 1:00 PM CST
+  by [Rahul](mailto:user@example.com)
 
 ## [1.0.0-beta.1] (https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-beta.1) (2024-01-10)
 
@@ -600,7 +700,8 @@ Release Date: Jan 10, 2024, 3:00 PM CST
 
 ### ✨ Features
 
-- Beta feature ([mno7890](https://github.com/rahulmathews/riders-server/commit/mno7890)) - Jan 10, 2024, 2:45 PM CST by [Rahul](mailto:user@example.com)
+- Beta feature ([mno7890](https://github.com/rahulmathews/riders-server/commit/mno7890)) - Jan 10, 2024, 2:45 PM CST
+  by [Rahul](mailto:user@example.com)
 
 ## [0.2.0-alpha.1] (https://github.com/rahulmathews/riders-server/releases/tag/v0.2.0-alpha.1) (2024-01-05)
 
@@ -610,7 +711,8 @@ Release Date: Jan 5, 2024, 1:30 PM CST
 
 ### ✨ Features
 
-- Alpha feature ([pqr1234](https://github.com/rahulmathews/riders-server/commit/pqr1234)) - Jan 5, 2024, 1:15 PM CST by [Rahul](mailto:user@example.com)
+- Alpha feature ([pqr1234](https://github.com/rahulmathews/riders-server/commit/pqr1234)) - Jan 5, 2024, 1:15 PM CST
+  by [Rahul](mailto:user@example.com)
 ```
 
 #### Commit Tracking
@@ -636,7 +738,8 @@ Release Date: Jan 5, 2024, 1:30 PM CST
 - **Commit Links**: Short hash display with links to full commit details
 - **Build Artifacts**: Compiled production build (`dist/`) included as a single release asset
 - **CI-Safe**: Husky git hooks disabled during CI/release processes
-- **Smart GitHub Plugin**: GitHub plugin only loads in CI environment or when `GITHUB_TOKEN` is available, allowing local development without token requirements
+- **Smart GitHub Plugin**: GitHub plugin only loads in CI environment or when `GITHUB_TOKEN` is available, allowing
+  local development without token requirements
 
 #### Formatting Workflow
 
@@ -808,41 +911,42 @@ Config validation error: "DATABASE_URL" is required
 #### Using ConfigService (Recommended)
 
 ```typescript
-import { ConfigService } from '@nestjs/config';
+import {ConfigService} from '@nestjs/config';
 
 @Injectable()
 export class MyService {
-  constructor(private configService: ConfigService) {}
+    constructor(private configService: ConfigService) {
+    }
 
-  // Access typed configuration
-  getDatabaseUrl(): string {
-    return this.configService.get<string>('database.url')!;
-  }
+    // Access typed configuration
+    getDatabaseUrl(): string {
+        return this.configService.get<string>('database.url')!;
+    }
 
-  // Access app configuration
-  getNodeEnv(): string {
-    return this.configService.get<string>('app.nodeEnv')!;
-  }
+    // Access app configuration
+    getNodeEnv(): string {
+        return this.configService.get<string>('app.nodeEnv')!;
+    }
 
-  // Environment checks
-  isDevelopment(): boolean {
-    return this.configService.get<string>('app.nodeEnv') === 'development';
-  }
+    // Environment checks
+    isDevelopment(): boolean {
+        return this.configService.get<string>('app.nodeEnv') === 'development';
+    }
 
-  isLocal(): boolean {
-    return this.configService.get<string>('app.nodeEnv') === 'local';
-  }
+    isLocal(): boolean {
+        return this.configService.get<string>('app.nodeEnv') === 'local';
+    }
 
-  isProduction(): boolean {
-    return this.configService.get<string>('app.nodeEnv') === 'production';
-  }
+    isProduction(): boolean {
+        return this.configService.get<string>('app.nodeEnv') === 'production';
+    }
 
-  // Feature flags
-  isRealTimeTrackingEnabled(): boolean {
-    return this.configService.get<boolean>(
-      'featureFlags.enableRealTimeTracking',
-    )!;
-  }
+    // Feature flags
+    isRealTimeTrackingEnabled(): boolean {
+        return this.configService.get<boolean>(
+            'featureFlags.enableRealTimeTracking',
+        )!;
+    }
 }
 ```
 

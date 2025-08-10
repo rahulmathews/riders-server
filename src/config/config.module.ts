@@ -14,7 +14,7 @@ import {
   loggingConfig,
   rateLimitConfig,
   redisConfig,
-} from './env.config';
+} from '@config/env.config';
 
 @Module({
   imports: [
