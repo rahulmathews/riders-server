@@ -68,6 +68,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Make scripts executable
+        run: chmod +x .husky/* scripts/*.sh
+
       - name: Build
         run: npm run build
 
@@ -75,4 +78,5 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_ENV: production
+          HUSKY: 0
         run: npx semantic-release
