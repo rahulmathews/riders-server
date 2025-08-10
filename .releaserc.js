@@ -65,8 +65,8 @@ module.exports = {
       successComment: false,
       failComment: false,
       assets: [
-        { path: 'riders-server-dist.tar.gz', label: '🚀 Distribution Files' },
-        { path: 'CHANGELOG.md', label: '📋 Changelog' }
+        { path: 'riders-server-dist.tar.gz', label: 'Distribution Files' },
+        { path: 'CHANGELOG.md', label: 'Changelog' }
       ]
     }],
     ['@semantic-release/git', {
