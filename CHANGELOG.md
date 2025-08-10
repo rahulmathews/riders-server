@@ -1,3 +1,13 @@
+## [1.0.0-alpha.14](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.14) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 2:57 PM CDT
+
+### 🐛 Bug Fixes
+
+- removed dist from assets ([67ab2ca](https://github.com/rahulmathews/riders-server/commit/67ab2ca05f9fdb8e9ef14d5fd27e916e254a7c3e)) - Aug 10, 2025, 2:56 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.13](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.13) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
