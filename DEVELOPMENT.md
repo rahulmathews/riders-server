@@ -74,7 +74,7 @@ WebStorm has built-in support for:
 - **ESLint**: Built-in integration with auto-fix on save
 - **Prettier**: Built-in formatting with save actions
 - **Git**: Advanced Git integration with conventional commits
-- **Node.js**: Debugging and run configurations
+- **Node.js**: Run configurations
 
 ## 🛠 Development Scripts
 
@@ -82,7 +82,8 @@ WebStorm has built-in support for:
 
 ```bash
 npm run start:dev     # Start development server with hot reload
-npm run start:debug   # Start with debugging enabled
+
+
 npm run build         # Build for production
 npm run start:prod    # Start production build
 ```
@@ -186,6 +187,8 @@ random commit message   # No conventional format
 - **Semicolons**: Always required
 - **Trailing Commas**: All trailing commas for better git diffs
 - **Indentation**: 2 spaces, no tabs
+
+
 
 ## 🎣 Git Hooks (Husky)
 
@@ -467,25 +470,7 @@ The project now includes comprehensive error handling for all hooks:
     - Provides clear installation instructions
     - Guides users through nvm setup process
 
-## 🔍 Debugging
 
-### Development Server
-
-```bash
-npm run start:debug  # Starts with debugging on port 9229
-```
-
-### WebStorm Debugging
-
-1. Set breakpoints in TypeScript files
-2. Create Node.js run configuration for `npm run start:debug`
-3. Use "Debug" button (Shift+F9) or debug icon
-4. WebStorm automatically attaches to the debugging port
-
-### Logging
-
-- Development: All logs enabled
-- Production: Error and warn levels only
 
 ## 🧪 Testing (Future Implementation)
 
@@ -502,7 +487,7 @@ npm run test:e2e       # Run end-to-end tests
 
 - Use `npm run start:dev` for hot reload during development
 - Build artifacts are in `dist/` directory
-- Source maps enabled for debugging
+
 - Incremental compilation for faster builds
 
 ## 📦 Dependencies Management
@@ -837,10 +822,10 @@ npm run start:dev
 
 #### Development Features (GraphQL & API)
 
-- `DEBUG` - Enable debug mode
+
 - `ENABLE_SWAGGER` - Enable API documentation
 - `ENABLE_GRAPHQL_PLAYGROUND` - Enable GraphQL playground
-- `LOG_LEVEL` - Logging level (debug, info, warn, error)
+- `LOG_LEVEL` - Logging level (info, warn, error)
 
 #### Feature Flags (MVP Core Features)
 
@@ -956,27 +941,24 @@ export class MyService {
 
 ```bash
 NODE_ENV=local
-DEBUG=true
 ENABLE_SWAGGER=true
 ENABLE_GRAPHQL_PLAYGROUND=true
-LOG_LEVEL=debug
+LOG_LEVEL=info
 ```
 
 #### Development Environment
 
 ```bash
 NODE_ENV=development
-DEBUG=true
 ENABLE_SWAGGER=true
 ENABLE_GRAPHQL_PLAYGROUND=true
-LOG_LEVEL=debug
+LOG_LEVEL=info
 ```
 
 #### Production Environment
 
 ```bash
 NODE_ENV=production
-DEBUG=false
 ENABLE_SWAGGER=false
 ENABLE_GRAPHQL_PLAYGROUND=false
 LOG_LEVEL=info
@@ -986,7 +968,6 @@ LOG_LEVEL=info
 
 ```bash
 NODE_ENV=test
-DEBUG=false
 ENABLE_SWAGGER=false
 ENABLE_GRAPHQL_PLAYGROUND=false
 LOG_LEVEL=error
@@ -1028,16 +1009,13 @@ The application loads environment files in this order (first found wins):
     - Use AppConfigService for type-safe access
     - Check interface definitions in `env.config.ts`
 
-#### Debug Configuration
+#### Configuration Check
 
 Add this endpoint to check your configuration:
 
 ```typescript
 @Get('config')
-getEnvironmentInfo()
-:
-object
-{
+getEnvironmentInfo(): object {
     return this.appService.getEnvironmentInfo();
 }
 ```
@@ -1145,7 +1123,7 @@ WebStorm automatically detects npm scripts. Create additional configurations:
 1. **Run** → **Edit Configurations** → **Add** → **npm**
 2. Useful configurations:
     - **Development**: Script `start:dev`
-    - **Debug**: Script `start:debug`
+
     - **Build**: Script `build`
     - **Lint**: Script `lint`
 

@@ -38,7 +38,6 @@ implement the MVP as a NestJS GraphQL API with self-hosted Supabase.
 - [x] Configure semantic release for automated versioning
 - [x] Implement environment-specific configurations (.env files)
 - [x] Configure path aliases for clean imports (@src, @modules, etc.)
-- [ ] Set up source maps for debugging
 - [ ] NestJS application setup with GraphQL
 - [ ] Self-hosted Supabase setup with Docker Compose
 
@@ -275,6 +274,7 @@ intelligence
 - [ ] Set up load testing with Artillery or k6
 - [ ] Create testing utilities and mocks
 - [ ] Implement automated testing in CI/CD pipeline
+- [ ] Set up source maps for production debugging
 
 #### Week 25-26: Performance & Reliability
 

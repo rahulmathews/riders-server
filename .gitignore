@@ -42,6 +42,8 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+!.vscode/c_cpp_properties.json
+!.vscode/c_cpp_*.json
 
 # dotenv environment variables file
 .env
