@@ -191,20 +191,105 @@ random commit message   # No conventional format
 
 ### Pre-commit Hook
 
-Automatically runs before each commit:
+Automatically runs before each commit with comprehensive error handling:
 
 - **ESLint**: Auto-fix on staged TypeScript files
 - **Prettier**: Format staged TypeScript and JSON files
+- **Error Handling**: Comprehensive error reporting with troubleshooting tips
+- **Progress Indicators**: Clear status updates and colored output
+- **Validation**: Git repository and tool availability checks
 - **Blocks commit**: If linting or formatting fails
+
+**Example successful output:**
+
+```
+[PRE-COMMIT] Running pre-commit checks...
+
+[PRE-COMMIT] Staged files to be processed:
+  - src/app.service.ts
+  - package.json
+
+[PRE-COMMIT] Running lint-staged...
+
+[SUCCESS] All pre-commit checks passed!
+
+[PRE-COMMIT] Files processed successfully:
+  - eslint --fix: src/app.service.ts
+  - prettier --write: src/app.service.ts, package.json
+
+[SUCCESS] Pre-commit hook completed successfully! 🎉
+```
+
+**Error handling includes:**
+
+- Git repository validation
+- Staged files detection
+- Tool availability checks (npx, lint-staged)
+- Detailed error messages with line numbers
+- Troubleshooting suggestions
 
 ### Commit-msg Hook
 
-Validates commit messages:
+Validates commit messages with comprehensive error handling:
 
-- **Conventional Commits**: Enforces format
+- **Conventional Commits**: Enforces format with detailed guidance
 - **Message Length**: Max 100 characters for header
 - **Required Fields**: Type and subject must be present
 - **Case Sensitivity**: Type and scope must be lowercase
+- **Error Guidance**: Provides examples and troubleshooting tips
+- **Color-coded Output**: Clear success/error indicators
+
+**Example error output:**
+
+```
+[COMMIT-MSG] Validating commit message...
+
+[COMMIT-MSG] Commit message:
+  add new feature
+
+[COMMIT-MSG] Running commitlint validation...
+
+[ERROR] Commit message validation failed!
+
+[ERROR] Error details:
+  ✖   subject may not be empty [subject-empty]
+  ✖   type may not be empty [type-empty]
+
+[COMMIT-MSG] Conventional commit format:
+  type(scope?): subject
+
+[COMMIT-MSG] Valid types:
+  feat     - New feature
+  fix      - Bug fix
+  docs     - Documentation changes
+  style    - Code style changes (formatting, etc.)
+  refactor - Code refactoring
+  perf     - Performance improvements
+  test     - Adding or updating tests
+  build    - Build system changes
+  ci       - CI/CD changes
+  chore    - Maintenance tasks
+  revert   - Reverting previous commits
+
+[COMMIT-MSG] Examples:
+  feat: add user authentication
+  fix(auth): resolve login timeout issue
+  docs: update API documentation
+  style: format code with prettier
+  refactor: simplify user service
+  test: add unit tests for auth module
+  ci: update GitHub Actions workflow
+  chore: update dependencies
+```
+
+**Error handling includes:**
+
+- Commit message file validation
+- Empty message detection
+- Git repository validation
+- Tool availability checks (npx, commitlint)
+- Detailed error messages with line numbers
+- Comprehensive troubleshooting guidance
 
 ## 📁 Project Structure
 
@@ -218,6 +303,10 @@ riders-server/
 ├── .husky/                # Git hooks
 │   ├── pre-commit         # Pre-commit quality checks
 │   └── commit-msg         # Commit message validation
+├── scripts/               # Utility scripts
+│   ├── pre-commit.sh      # Enhanced pre-commit hook with error handling
+│   ├── commit-msg.sh      # Enhanced commit-msg hook with error handling
+│   └── check-node-version.js # Node.js version validation
 ├── .nvmrc                 # Node.js version specification
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
@@ -255,9 +344,32 @@ riders-server/
 
 ### Husky Hook Failures
 
-- **File permissions**: Run `chmod +x .husky/*`
-- **Line endings**: Run `dos2unix .husky/*` on Windows
+- **File permissions**: Run `chmod +x .husky/* scripts/*.sh`
+- **Line endings**: Run `dos2unix .husky/* scripts/*.sh` on Windows
 - **Missing dependencies**: Run `npm install`
+- **Script errors**: Check the detailed error output for specific guidance
+- **Tool availability**: Ensure npx, lint-staged, and commitlint are available
+
+### Enhanced Error Handling
+
+The project now includes comprehensive error handling for all hooks:
+
+- **Pre-commit Hook**:
+  - Validates git repository and staged files
+  - Checks tool availability (npx, lint-staged)
+  - Provides detailed error messages with troubleshooting tips
+  - Shows progress indicators and colored output
+
+- **Commit-msg Hook**:
+  - Validates commit message format and content
+  - Provides examples of correct commit formats
+  - Shows all valid commit types with descriptions
+  - Offers step-by-step troubleshooting guidance
+
+- **Node.js Version Check**:
+  - Validates against `.nvmrc` version
+  - Provides clear installation instructions
+  - Guides users through nvm setup process
 
 ## 🔍 Debugging
 
