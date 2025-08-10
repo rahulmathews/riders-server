@@ -1,3 +1,13 @@
+## [1.0.0-alpha.16](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.16) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 4:39 PM CDT
+
+### ✨ Features
+
+- implemented setup for NestJS application with GraphQL ([67b02a5](https://github.com/rahulmathews/riders-server/commit/67b02a5ad25ed2d2b5d594733c3be5010931a011)) - Aug 10, 2025, 4:37 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.15](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.15) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
