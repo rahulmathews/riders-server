@@ -578,5 +578,19 @@ Release Date: {{formattedReleaseDate}}
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],
+    // Only include GitHub plugin in CI environment or when token is available
+    ...(process.env.CI === 'true' || process.env.GITHUB_TOKEN ? [
+      [
+        '@semantic-release/github',
+        {
+          assets: [
+            {
+              path: 'dist/**/*',
+              label: 'Build Artifacts',
+            },
+          ],
+        },
+      ],
+    ] : []),
   ],
 }
