@@ -17,6 +17,7 @@ async function bootstrap(): Promise<void> {
 
   console.log(`🚀 Application is running on: http://${host}:${port}`);
   console.log(`📊 Environment: ${configService.get<string>('app.nodeEnv')}`);
+  console.log(`🔍 GraphQL Playground: http://${host}:${port}/graphql`);
 }
 
 bootstrap().catch((err) => {

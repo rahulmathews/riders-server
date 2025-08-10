@@ -188,8 +188,6 @@ random commit message   # No conventional format
 - **Trailing Commas**: All trailing commas for better git diffs
 - **Indentation**: 2 spaces, no tabs
 
-
-
 ## 🎣 Git Hooks (Husky)
 
 ### Pre-commit Hook
@@ -470,8 +468,6 @@ The project now includes comprehensive error handling for all hooks:
     - Provides clear installation instructions
     - Guides users through nvm setup process
 
-
-
 ## 🧪 Testing (Future Implementation)
 
 Testing framework is planned for Phase 3 of development. When implemented:
@@ -481,6 +477,151 @@ npm run test           # Run unit tests
 npm run test:watch     # Run tests in watch mode
 npm run test:cov       # Run tests with coverage
 npm run test:e2e       # Run end-to-end tests
+```
+
+## 🔍 GraphQL API
+
+The application uses NestJS with Apollo Server to provide a GraphQL API. The setup includes:
+
+- **Apollo Server**: GraphQL server implementation
+- **Code-first approach**: GraphQL schema is automatically generated from TypeScript decorators
+- **Playground**: Interactive GraphQL playground for development
+- **Type safety**: Full TypeScript integration with GraphQL types
+
+### Configuration
+
+The GraphQL module is configured in `src/modules/graphql/graphql.module.ts` with the following features:
+
+- **Auto schema generation**: Schema is automatically generated to `src/schema.gql`
+- **Development playground**: Available at `/graphql` in non-production environments
+- **Introspection**: Enabled in development for better tooling support
+- **Error formatting**: Stack traces are removed in production
+
+### Available Queries
+
+#### Health Check
+
+```graphql
+query {
+  health
+}
+```
+
+#### Ping
+
+```graphql
+query {
+    ping
+}
+```
+
+#### Get All Users
+
+```graphql
+query {
+  users {
+    id
+    email
+    name
+    createdAt
+    updatedAt
+  }
+}
+```
+
+#### Get User by ID
+
+```graphql
+query {
+    user(id: "user-id") {
+        id
+        email
+        name
+        createdAt
+        updatedAt
+    }
+}
+```
+
+### Development
+
+#### Starting the Development Server
+
+```bash
+npm run start:dev
+```
+
+#### Accessing GraphQL Playground
+
+Visit `http://localhost:3000/graphql` in your browser to access the interactive GraphQL playground.
+
+#### Schema Generation
+
+The GraphQL schema is automatically generated when the application starts. The schema file is located at
+`src/schema.gql` and is regenerated on each startup.
+
+### Adding New Resolvers
+
+1. Create a new resolver class with the `@Resolver()` decorator
+2. Add query/mutation methods with appropriate decorators
+3. Create DTOs for your GraphQL types using `@ObjectType()` and `@Field()` decorators
+4. Register the resolver in the appropriate module
+
+#### Example Resolver
+
+```typescript
+import {Query, Resolver, Args, ID} from '@nestjs/graphql';
+import {UserDto} from './dto/user.dto';
+
+@Resolver(() => UserDto)
+export class UsersResolver {
+    @Query(() => [UserDto])
+    async users(): Promise<UserDto[]> {
+        // Implementation
+    }
+}
+```
+
+#### Example DTO
+
+```typescript
+import { ObjectType, Field, ID } from '@nestjs/graphql';
+
+@ObjectType()
+export class UserDto {
+  @Field(() => ID)
+  id!: string;
+
+  @Field()
+  email!: string;
+
+  @Field()
+  name!: string;
+}
+```
+
+### Production Considerations
+
+- GraphQL playground is disabled in production
+- Introspection is disabled in production
+- Stack traces are removed from error responses
+- Consider implementing query complexity analysis
+- Set up proper authentication and authorization for GraphQL endpoints
+
+### Testing
+
+You can test the GraphQL API using:
+
+1. **GraphQL Playground**: Interactive interface at `/graphql`
+2. **cURL**: Direct HTTP POST requests to `/graphql`
+3. **GraphQL clients**: Apollo Client, urql, etc.
+
+#### Example cURL Request
+
+```bash
+curl -X POST http://localhost:3000/graphql \
+  -H "Content-Type: application/json" \
+  -d '{"query":"{ health }"}'
 ```
 
 ## 🚀 Performance Tips
@@ -822,7 +963,6 @@ npm run start:dev
 
 #### Development Features (GraphQL & API)
 
-
 - `ENABLE_SWAGGER` - Enable API documentation
 - `ENABLE_GRAPHQL_PLAYGROUND` - Enable GraphQL playground
 - `LOG_LEVEL` - Logging level (info, warn, error)
@@ -1015,7 +1155,10 @@ Add this endpoint to check your configuration:
 
 ```typescript
 @Get('config')
-getEnvironmentInfo(): object {
+getEnvironmentInfo()
+:
+object
+{
     return this.appService.getEnvironmentInfo();
 }
 ```

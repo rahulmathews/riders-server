@@ -1,0 +1,19 @@
+import { Field, ID, ObjectType } from '@nestjs/graphql';
+
+@ObjectType()
+export class UserDto {
+  @Field(() => ID)
+  id!: string;
+
+  @Field()
+  email!: string;
+
+  @Field()
+  name!: string;
+
+  @Field()
+  createdAt!: Date;
+
+  @Field()
+  updatedAt!: Date;
+}
