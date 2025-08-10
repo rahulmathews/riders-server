@@ -1,3 +1,13 @@
+## [1.0.0-alpha.10](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.10) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 1:42 PM CDT
+
+### 🐛 Bug Fixes
+
+- test release notes formatting ([ee9a578](https://github.com/rahulmathews/riders-server/commit/ee9a5784719b3d7c1b638f71e10dd8579169305d)) - Aug 10, 2025, 1:40 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.9](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.9) (2025-08-10)
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
 
