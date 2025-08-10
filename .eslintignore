@@ -1,0 +1,15 @@
+# Ignore Markdown files
+*.md
+
+# Build outputs
+dist/
+build/
+coverage/
+
+# Dependencies
+node_modules/
+
+# Generated and config files
+*.tsbuildinfo
+nest-cli.json
+*.config.js

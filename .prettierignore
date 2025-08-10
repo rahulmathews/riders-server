@@ -14,15 +14,15 @@ tsconfig*.json
 .gitignore
 .releaserc.js
 
-# Documentation files
+# Documentation files (exclude all markdown)
 *.md
 LICENSE
 
-# Allow formatting of important files
-!CHANGELOG.md
-!DEVELOPMENT.md
-!README.md
-!ROADMAP.md
+# Allow formatting of important files (disabled for md exclusion)
+# !CHANGELOG.md
+# !DEVELOPMENT.md
+# !README.md
+# !ROADMAP.md
 !package.json
 
 # Logs
