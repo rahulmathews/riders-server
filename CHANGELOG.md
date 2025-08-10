@@ -2,6 +2,9 @@
 
 All notable changes to this project will be documented in this file.
 
+
+# [1.0.0-alpha.5](https://github.com/rahulmathews/riders-server/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-08-10)
+
 # [1.0.0-alpha.4](https://github.com/rahulmathews/riders-server/compare/v1.0.0-alpha.3...v1.0.0-alpha.4) (2025-08-10)
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
