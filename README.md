@@ -179,7 +179,7 @@ progression:
 - **Enhanced Changelog**: Rich emoji-based sections with timestamps and author links
 - **Commit Tracking**: Short hash display with links to full commit details
 - **Formatted Timestamps**: CST/CDT timezone with AM/PM format
-- **Build Artifacts**: Production-ready compiled assets included in releases
+- **Build Artifacts**: Production-ready compiled assets included as a single release asset
 - **GitHub Releases**: Automatic GitHub releases with detailed release notes
 
 **For detailed release process and scripts**, see

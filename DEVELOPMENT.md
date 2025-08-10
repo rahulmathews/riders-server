@@ -634,7 +634,7 @@ Release Date: Jan 5, 2024, 1:30 PM CST
 - **Timestamps**: Each commit shows formatted date/time in CST/CDT
 - **Author Links**: Clickable author names with email links
 - **Commit Links**: Short hash display with links to full commit details
-- **Build Artifacts**: Compiled production build (`dist/`) included in release assets
+- **Build Artifacts**: Compiled production build (`dist/`) included as a single release asset
 - **CI-Safe**: Husky git hooks disabled during CI/release processes
 - **Smart GitHub Plugin**: GitHub plugin only loads in CI environment or when `GITHUB_TOKEN` is available, allowing local development without token requirements
 
