@@ -1,3 +1,15 @@
+## [1.0.0-alpha.11](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.11) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 1:54 PM CDT
+
+### 🐛 Bug Fixes
+
+- add GitHub plugin for release creation ([9d9a23d](https://github.com/rahulmathews/riders-server/commit/9d9a23d9ab131bf4fe4252f861afcc9ccaee35db)) - Aug 10, 2025, 1:46 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+- added semantic-release github plugin to handle github releases in CI mode ([5aefbb3](https://github.com/rahulmathews/riders-server/commit/5aefbb3a7eb6a9385d82f9ac3a7a90fb1aa90bdb)) - Aug 10, 2025, 1:52 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.10](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.10) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
