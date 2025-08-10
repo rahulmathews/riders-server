@@ -52,7 +52,8 @@ module.exports = {
     }],
     ['@semantic-release/git', {
       assets: ['CHANGELOG.md', 'package.json'],
-      message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}'
+      message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
+      gitArgs: ['--no-verify']
     }],
   ],
   preset: 'angular',
