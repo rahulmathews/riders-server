@@ -282,19 +282,17 @@ module.exports = {
 
             return newCommit
           },
-          headerPartial: `
-## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
+          headerPartial: `## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
+
 Released by: {{#if latestCommitAuthor.name}}[{{latestCommitAuthor.name}}](mailto:{{latestCommitAuthor.email}}){{else}}semantic-release{{/if}}
 
 Release Date: {{formattedReleaseDate}}
 
 `,
-          commitPartial: `
-{{subject}} ([{{shortHash}}](https://github.com/rahulmathews/riders-server/commit/{{hash}})) - {{formattedDate}} by [{{author.name}}](mailto:{{author.email}})
+          commitPartial: `{{subject}} ([{{shortHash}}](https://github.com/rahulmathews/riders-server/commit/{{hash}})) - {{formattedDate}} by [{{author.name}}](mailto:{{author.email}})
 
 `,
-          mainTemplate: `
-{{> header}}
+          mainTemplate: `{{> header}}
 {{#each commitGroups}}
 ### {{#if commits.[0].section}}{{commits.[0].section}}{{else}}{{title}}{{/if}}
 
@@ -535,19 +533,17 @@ Release Date: {{formattedReleaseDate}}
 
             return newCommit
           },
-          headerPartial: `
-## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
+          headerPartial: `## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
+
 Released by: {{#if latestCommitAuthor.name}}[{{latestCommitAuthor.name}}](mailto:{{latestCommitAuthor.email}}){{else}}semantic-release{{/if}}
 
 Release Date: {{formattedReleaseDate}}
 
 `,
-          commitPartial: `
-{{subject}} ([{{shortHash}}](https://github.com/rahulmathews/riders-server/commit/{{hash}})) - {{formattedDate}} by [{{author.name}}](mailto:{{author.email}})
+          commitPartial: `{{subject}} ([{{shortHash}}](https://github.com/rahulmathews/riders-server/commit/{{hash}})) - {{formattedDate}} by [{{author.name}}](mailto:{{author.email}})
 
 `,
-          mainTemplate: `
-{{> header}}
+          mainTemplate: `{{> header}}
 {{#each commitGroups}}
 ### {{#if commits.[0].section}}{{commits.[0].section}}{{else}}{{title}}{{/if}}
 
