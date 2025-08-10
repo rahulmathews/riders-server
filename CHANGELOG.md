@@ -1,3 +1,23 @@
+## [1.0.0-alpha.12](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.12) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 2:36 PM CDT
+
+### ✨ Features
+
+- configured path aliases for clean imports ([e7288a7](https://github.com/rahulmathews/riders-server/commit/e7288a70551b326197e11c43bb1921c561c01c42)) - Aug 10, 2025, 2:35 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+
+### 📚 Documentation
+
+- updated docs ([1b56fba](https://github.com/rahulmathews/riders-server/commit/1b56fba0749c30fc16370f541f7d5a14f19efabc)) - Aug 10, 2025, 1:59 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+
+### 🏗️ Build System
+
+- added fix to include dist in the releases ([96e87cd](https://github.com/rahulmathews/riders-server/commit/96e87cd698b35c7099efd9596f656b26ddab4b87)) - Aug 10, 2025, 1:58 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.11](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.11) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
