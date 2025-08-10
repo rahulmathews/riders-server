@@ -1,6 +1,6 @@
 {
   "name": "riders-server",
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.7",
   "description": "A comprehensive backend API for a modern ride-sharing platform built with NestJS, GraphQL, and self-hosted Supabase, providing real-time ride matching, location tracking, and seamless payment processing.",
   "main": "dist/main.js",
   "scripts": {
@@ -17,6 +17,7 @@
     "commitlint": "commitlint --edit",
     "prepare": "husky",
     "release": "semantic-release",
+    "release:dry-run": "semantic-release --dry-run",
     "release:develop": "./scripts/release.sh develop",
     "release:stable": "./scripts/release.sh stable"
   },
