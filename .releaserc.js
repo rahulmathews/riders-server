@@ -42,6 +42,18 @@ module.exports = {
           { type: 'merge', release: false },
           { type: 'chore', scope: 'release', release: 'patch' },
         ],
+        parser: (commit) => {
+          // Handle merge commits that don't follow conventional commit format
+          if (commit.message.startsWith('Merge')) {
+            return {
+              ...commit,
+              type: 'merge',
+              subject: commit.message.split('\n')[0], // Take first line only
+              release: false, // Merge commits don't trigger releases
+            };
+          }
+          return commit;
+        },
       },
     ],
     [
@@ -65,6 +77,211 @@ module.exports = {
           ],
         },
         writerOpts: {
+          transform: (commit, context) => {
+            // Map commit types to emoji sections (override presetConfig for template display)
+            const typeToSectionMap = {
+              feat: '✨ Features',
+              fix: '🐛 Bug Fixes',
+              perf: '⚡ Performance Improvements',
+              refactor: '♻️ Code Refactoring',
+              docs: '📚 Documentation',
+              test: '🧪 Tests',
+              build: '🏗️ Build System',
+              ci: '👷 Continuous Integration',
+              style: '💄 Styles',
+              revert: '⏪ Reverts',
+              merge: '🔀 Pull Requests',
+            }
+
+            // Format dates consistently for commit timestamps
+            const formatCommitDate = (date) => {
+              let parsedDate
+              if (!date) {
+                parsedDate = new Date()
+              } else if (typeof date === 'string') {
+                parsedDate = new Date(date)
+              } else if (date instanceof Date) {
+                parsedDate = date
+              } else {
+                parsedDate = new Date()
+              }
+
+              // Check if date is valid
+              if (isNaN(parsedDate.getTime())) {
+                parsedDate = new Date()
+              }
+
+              return parsedDate.toLocaleString('en-US', {
+                timeZone: 'America/Chicago',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+                timeZoneName: 'short',
+              })
+            }
+
+            // Handle merge commits specially - include them in changelog
+            if (
+              commit.type === 'merge' ||
+              commit.subject?.startsWith('Merge') ||
+              commit.message?.startsWith('Merge')
+            ) {
+              const newCommit = {
+                ...commit,
+                type: 'merge',
+                section: '🔀 Pull Requests'
+              }
+
+              // Extract PR number and branch name from merge commit message
+              // Handle different GitHub merge commit formats
+              let mergeMatch = (commit.subject || commit.message).match(
+                /Merge pull request #(\d+) from ([^\s]+)/
+              )
+
+              if (!mergeMatch) {
+                // Try format: "Merge branch 'branch-name' into main"
+                mergeMatch = (commit.subject || commit.message).match(
+                  /Merge branch '([^']+)' into ([^\s]+)/
+                )
+              }
+
+              if (!mergeMatch) {
+                // Try format: "Merge remote-tracking branch 'origin/branch' into branch"
+                mergeMatch = (commit.subject || commit.message).match(
+                  /Merge remote-tracking branch '([^']+)' into ([^\s]+)/
+                )
+              }
+
+              if (mergeMatch) {
+                let prNumber, branchName
+                if (mergeMatch.length === 3 && mergeMatch[1].startsWith('#')) {
+                  // First format: "Merge pull request #123 from branch"
+                  ;[, prNumber, branchName] = mergeMatch
+                  prNumber = prNumber.replace('#', '')
+                  newCommit.subject = `Merged [PR #${prNumber}](https://github.com/rahulmathews/riders-server/pull/${prNumber}) from ${branchName}`
+                } else if (mergeMatch.length === 3) {
+                  // Second/Third format: "Merge branch 'branch' into main" or "Merge remote-tracking branch 'origin/branch' into branch"
+                  ;[, branchName] = mergeMatch
+                  newCommit.subject = `Merged branch ${branchName}`
+                } else {
+                  newCommit.subject = `Merged: ${commit.subject || commit.message}`
+                }
+              } else {
+                // If no pattern found, use a generic format
+                newCommit.subject = `Merged: ${commit.subject || commit.message}`
+              }
+
+              // Add short hash for merge commits before returning
+              if (commit.hash) {
+                newCommit.shortHash = commit.hash.substring(0, 7)
+              }
+
+              // Add formatted date for merge commits
+              let commitDate = new Date()
+              if (commit.hash || commit.commit?.long) {
+                try {
+                  // Use git to get the actual commit date
+                  const { execSync } = require('child_process')
+                  const commitHash = commit.hash || commit.commit.long
+                  const gitDate = execSync(`git show -s --format=%ci ${commitHash}`, {
+                    encoding: 'utf8',
+                    timeout: 5000,
+                  }).trim()
+                  commitDate = new Date(gitDate)
+
+                  // Verify the date is valid
+                  if (isNaN(commitDate.getTime())) {
+                    commitDate = new Date() // fallback
+                  }
+                } catch (error) {
+                  // If git command fails, use current time as fallback
+                  commitDate = new Date()
+                }
+              }
+              newCommit.formattedDate = formatCommitDate(commitDate)
+
+              // Ensure merge commits are included in changelog
+              return newCommit
+            }
+
+            // Skip chore commits (they're marked as hidden in presetConfig)
+            if (commit.type === 'chore') {
+              return false
+            }
+
+            // Create new commit object to avoid immutable object issues
+            const newCommit = { ...commit }
+
+            // Override section title with emoji version
+            if (commit.type && typeToSectionMap[commit.type]) {
+              newCommit.section = typeToSectionMap[commit.type]
+            }
+
+            // Add formatted dates to commit - get actual date from git
+            let commitDate = new Date()
+
+            if (commit.hash || commit.commit?.long) {
+              try {
+                // Use git to get the actual commit date
+                const { execSync } = require('child_process')
+                const commitHash = commit.hash || commit.commit.long
+                const gitDate = execSync(`git show -s --format=%ci ${commitHash}`, {
+                  encoding: 'utf8',
+                  timeout: 5000,
+                }).trim()
+                commitDate = new Date(gitDate)
+
+                // Verify the date is valid
+                if (isNaN(commitDate.getTime())) {
+                  commitDate = new Date() // fallback
+                }
+              } catch (error) {
+                // If git command fails, use current time as fallback
+                commitDate = new Date()
+              }
+            }
+
+            newCommit.formattedDate = formatCommitDate(commitDate)
+
+            // Add short hash
+            if (commit.hash) {
+              newCommit.shortHash = commit.hash.substring(0, 7)
+            }
+
+            // Add formatted release date to context (only once per release)
+            if (!context.formattedReleaseDate) {
+              context.formattedReleaseDate = formatCommitDate(new Date())
+            }
+
+            // Add latest commit author to context (capture the most recent commit author)
+            if (!context.latestCommitAuthor && commit.author) {
+              context.latestCommitAuthor = {
+                name: commit.author.name || 'Unknown',
+                email: commit.author.email || '',
+              }
+            }
+
+            // Final validation - ensure commit has valid subject
+            // Be more lenient for merge commits and other special cases
+            if (!newCommit.subject || newCommit.subject.trim() === '') {
+              // For merge commits, use the message as subject
+              if (newCommit.type === 'merge' && commit.message) {
+                newCommit.subject = commit.message
+                return newCommit
+              }
+              // For other commits without subject, try to use message
+              if (commit.message && commit.message.trim() !== '') {
+                newCommit.subject = commit.message
+                return newCommit
+              }
+              return false
+            }
+
+            return newCommit
+          },
           headerPartial: `
 ## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
 Released by: {{#if latestCommitAuthor.name}}[{{latestCommitAuthor.name}}](mailto:{{latestCommitAuthor.email}}){{else}}semantic-release{{/if}}
@@ -115,6 +332,211 @@ Release Date: {{formattedReleaseDate}}
           ],
         },
         writerOpts: {
+          transform: (commit, context) => {
+            // Map commit types to emoji sections (override presetConfig for template display)
+            const typeToSectionMap = {
+              feat: '✨ Features',
+              fix: '🐛 Bug Fixes',
+              perf: '⚡ Performance Improvements',
+              refactor: '♻️ Code Refactoring',
+              docs: '📚 Documentation',
+              test: '🧪 Tests',
+              build: '🏗️ Build System',
+              ci: '👷 Continuous Integration',
+              style: '💄 Styles',
+              revert: '⏪ Reverts',
+              merge: '🔀 Pull Requests',
+            }
+
+            // Format dates consistently for commit timestamps
+            const formatCommitDate = (date) => {
+              let parsedDate
+              if (!date) {
+                parsedDate = new Date()
+              } else if (typeof date === 'string') {
+                parsedDate = new Date(date)
+              } else if (date instanceof Date) {
+                parsedDate = date
+              } else {
+                parsedDate = new Date()
+              }
+
+              // Check if date is valid
+              if (isNaN(parsedDate.getTime())) {
+                parsedDate = new Date()
+              }
+
+              return parsedDate.toLocaleString('en-US', {
+                timeZone: 'America/Chicago',
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true,
+                timeZoneName: 'short',
+              })
+            }
+
+            // Handle merge commits specially - include them in changelog
+            if (
+              commit.type === 'merge' ||
+              commit.subject?.startsWith('Merge') ||
+              commit.message?.startsWith('Merge')
+            ) {
+              const newCommit = {
+                ...commit,
+                type: 'merge',
+                section: '🔀 Pull Requests'
+              }
+
+              // Extract PR number and branch name from merge commit message
+              // Handle different GitHub merge commit formats
+              let mergeMatch = (commit.subject || commit.message).match(
+                /Merge pull request #(\d+) from ([^\s]+)/
+              )
+
+              if (!mergeMatch) {
+                // Try format: "Merge branch 'branch-name' into main"
+                mergeMatch = (commit.subject || commit.message).match(
+                  /Merge branch '([^']+)' into ([^\s]+)/
+                )
+              }
+
+              if (!mergeMatch) {
+                // Try format: "Merge remote-tracking branch 'origin/branch' into branch"
+                mergeMatch = (commit.subject || commit.message).match(
+                  /Merge remote-tracking branch '([^']+)' into ([^\s]+)/
+                )
+              }
+
+              if (mergeMatch) {
+                let prNumber, branchName
+                if (mergeMatch.length === 3 && mergeMatch[1].startsWith('#')) {
+                  // First format: "Merge pull request #123 from branch"
+                  ;[, prNumber, branchName] = mergeMatch
+                  prNumber = prNumber.replace('#', '')
+                  newCommit.subject = `Merged [PR #${prNumber}](https://github.com/rahulmathews/riders-server/pull/${prNumber}) from ${branchName}`
+                } else if (mergeMatch.length === 3) {
+                  // Second/Third format: "Merge branch 'branch' into main" or "Merge remote-tracking branch 'origin/branch' into branch"
+                  ;[, branchName] = mergeMatch
+                  newCommit.subject = `Merged branch ${branchName}`
+                } else {
+                  newCommit.subject = `Merged: ${commit.subject || commit.message}`
+                }
+              } else {
+                // If no pattern found, use a generic format
+                newCommit.subject = `Merged: ${commit.subject || commit.message}`
+              }
+
+              // Add short hash for merge commits before returning
+              if (commit.hash) {
+                newCommit.shortHash = commit.hash.substring(0, 7)
+              }
+
+              // Add formatted date for merge commits
+              let commitDate = new Date()
+              if (commit.hash || commit.commit?.long) {
+                try {
+                  // Use git to get the actual commit date
+                  const { execSync } = require('child_process')
+                  const commitHash = commit.hash || commit.commit.long
+                  const gitDate = execSync(`git show -s --format=%ci ${commitHash}`, {
+                    encoding: 'utf8',
+                    timeout: 5000,
+                  }).trim()
+                  commitDate = new Date(gitDate)
+
+                  // Verify the date is valid
+                  if (isNaN(commitDate.getTime())) {
+                    commitDate = new Date() // fallback
+                  }
+                } catch (error) {
+                  // If git command fails, use current time as fallback
+                  commitDate = new Date()
+                }
+              }
+              newCommit.formattedDate = formatCommitDate(commitDate)
+
+              // Ensure merge commits are included in changelog
+              return newCommit
+            }
+
+            // Skip chore commits (they're marked as hidden in presetConfig)
+            if (commit.type === 'chore') {
+              return false
+            }
+
+            // Create new commit object to avoid immutable object issues
+            const newCommit = { ...commit }
+
+            // Override section title with emoji version
+            if (commit.type && typeToSectionMap[commit.type]) {
+              newCommit.section = typeToSectionMap[commit.type]
+            }
+
+            // Add formatted dates to commit - get actual date from git
+            let commitDate = new Date()
+
+            if (commit.hash || commit.commit?.long) {
+              try {
+                // Use git to get the actual commit date
+                const { execSync } = require('child_process')
+                const commitHash = commit.hash || commit.commit.long
+                const gitDate = execSync(`git show -s --format=%ci ${commitHash}`, {
+                  encoding: 'utf8',
+                  timeout: 5000,
+                }).trim()
+                commitDate = new Date(gitDate)
+
+                // Verify the date is valid
+                if (isNaN(commitDate.getTime())) {
+                  commitDate = new Date() // fallback
+                }
+              } catch (error) {
+                // If git command fails, use current time as fallback
+                commitDate = new Date()
+              }
+            }
+
+            newCommit.formattedDate = formatCommitDate(commitDate)
+
+            // Add short hash
+            if (commit.hash) {
+              newCommit.shortHash = commit.hash.substring(0, 7)
+            }
+
+            // Add formatted release date to context (only once per release)
+            if (!context.formattedReleaseDate) {
+              context.formattedReleaseDate = formatCommitDate(new Date())
+            }
+
+            // Add latest commit author to context (capture the most recent commit author)
+            if (!context.latestCommitAuthor && commit.author) {
+              context.latestCommitAuthor = {
+                name: commit.author.name || 'Unknown',
+                email: commit.author.email || '',
+              }
+            }
+
+            // Final validation - ensure commit has valid subject
+            // Be more lenient for merge commits and other special cases
+            if (!newCommit.subject || newCommit.subject.trim() === '') {
+              // For merge commits, use the message as subject
+              if (newCommit.type === 'merge' && commit.message) {
+                newCommit.subject = commit.message
+                return newCommit
+              }
+              // For other commits without subject, try to use message
+              if (commit.message && commit.message.trim() !== '') {
+                newCommit.subject = commit.message
+                return newCommit
+              }
+              return false
+            }
+
+            return newCommit
+          },
           headerPartial: `
 ## [{{version}}](https://github.com/rahulmathews/riders-server/releases/tag/v{{version}}) ({{date}})
 Released by: {{#if latestCommitAuthor.name}}[{{latestCommitAuthor.name}}](mailto:{{latestCommitAuthor.email}}){{else}}semantic-release{{/if}}

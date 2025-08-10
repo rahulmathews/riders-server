@@ -155,5 +155,6 @@ module.exports = {
         'max-lines-per-function': ['warn', 100], // Controllers might have longer methods
       },
     },
+
   ],
 };

@@ -17,9 +17,7 @@
     "commitlint": "commitlint --edit",
     "prepare": "husky",
     "release": "semantic-release",
-    "release:dry-run": "semantic-release --dry-run",
-    "release:develop": "./scripts/release.sh develop",
-    "release:stable": "./scripts/release.sh stable"
+    "release:dry-run": "semantic-release --dry-run"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
@@ -37,7 +35,6 @@
     "@nestjs/schematics": "^10.0.0",
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@semantic-release/github": "^11.0.3",
     "@types/express": "^4.17.17",
     "@types/node": "^20.3.1",
     "@typescript-eslint/eslint-plugin": "^8.39.0",
@@ -60,11 +57,11 @@
     "typescript": "5.3.3"
   },
   "lint-staged": {
-    "*.{ts,tsx}": [
+    "*.{ts,tsx,js}": [
       "eslint --fix",
       "prettier --write"
     ],
-    "*.{json,yml,yaml,js}": [
+    "*.{json,yml,yaml}": [
       "prettier --write"
     ]
   },

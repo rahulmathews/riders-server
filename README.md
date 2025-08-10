@@ -92,10 +92,9 @@ riders-server/
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
 ├── .prettierignore        # Prettier ignore patterns
-├── .releaserc.js          # Semantic release configuration
+├── .releaserc.js          # Enhanced semantic release configuration
 ├── commitlint.config.js   # Commitlint configuration
-├── scripts/               # Release and utility scripts
-│   └── release.sh         # Pre-release management script
+├── scripts/               # Utility scripts
 ├── tsconfig.json          # TypeScript configuration
 ├── tsconfig.build.json    # Build-specific TypeScript config
 ├── package.json           # Dependencies and scripts
@@ -139,7 +138,9 @@ This is a basic NestJS application with a robust development foundation:
 - ✅ Prettier code formatting
 - ✅ Husky pre-commit hooks
 - ✅ Commitlint for conventional commits
-- ✅ Semantic release for automated versioning
+- ✅ Enhanced semantic release with emoji-based changelog
+- ✅ Automated versioning with rich commit tracking
+- ✅ GitHub integration with formatted timestamps
 
 ## 📚 Documentation
 
@@ -166,8 +167,8 @@ progression:
 
 1. **Development** (`develop`): Ongoing development with alpha/beta/rc
    versioning
-   - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` →
-     `2.0.0-rc.1`
+    - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` →
+      `2.0.0-rc.1`
 2. **Stable** (`main`): Production-ready releases (1.0.0+)
 
 **Features:**
@@ -175,9 +176,10 @@ progression:
 - **Unified Pipeline**: Single CI → Release workflow for better flow control
 - **Automatic Tags**: Git tags created for each release (`v0.1.0-alpha.1`,
   `v1.0.0-beta.1`, `v2.0.0`)
-- **Changelog Generation**: `CHANGELOG.md` automatically updated with
-  categorized commits
-- **GitHub Releases**: Automatic GitHub releases with release notes
+- **Enhanced Changelog**: Rich emoji-based sections with timestamps and author links
+- **Commit Tracking**: Short hash display with links to full commit details
+- **Formatted Timestamps**: CST/CDT timezone with AM/PM format
+- **GitHub Releases**: Automatic GitHub releases with detailed release notes
 
 **For detailed release process and scripts**, see
 [DEVELOPMENT.md](DEVELOPMENT.md).
@@ -192,6 +194,17 @@ progression:
 5. Push to your branch and create a Pull Request
 
 **All contributions must pass automated checks** (ESLint, Prettier, commitlint).
+
+**Commit Types**: Use conventional commit types for automatic categorization:
+
+- `feat:` - New features (✨ Features)
+- `fix:` - Bug fixes (🐛 Bug Fixes)
+- `docs:` - Documentation (📚 Documentation)
+- `style:` - Code style changes (💄 Styles)
+- `refactor:` - Code refactoring (♻️ Code Refactoring)
+- `test:` - Adding tests (🧪 Tests)
+- `build:` - Build system changes (🏗️ Build System)
+- `ci:` - CI/CD changes (👷 Continuous Integration)
 
 ## 📝 License
 

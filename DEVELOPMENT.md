@@ -113,7 +113,7 @@ messages must follow this format:
 ### Commit Types
 
 | Type       | Description              | Example                                          |
-| ---------- | ------------------------ | ------------------------------------------------ |
+|------------|--------------------------|--------------------------------------------------|
 | `feat`     | New feature              | `feat(auth): add JWT token validation`           |
 | `fix`      | Bug fix                  | `fix(api): resolve user profile update issue`    |
 | `docs`     | Documentation changes    | `docs(readme): update installation instructions` |
@@ -355,21 +355,21 @@ riders-server/
 The project now includes comprehensive error handling for all hooks:
 
 - **Pre-commit Hook**:
-  - Validates git repository and staged files
-  - Checks tool availability (npx, lint-staged)
-  - Provides detailed error messages with troubleshooting tips
-  - Shows progress indicators and colored output
+    - Validates git repository and staged files
+    - Checks tool availability (npx, lint-staged)
+    - Provides detailed error messages with troubleshooting tips
+    - Shows progress indicators and colored output
 
 - **Commit-msg Hook**:
-  - Validates commit message format and content
-  - Provides examples of correct commit formats
-  - Shows all valid commit types with descriptions
-  - Offers step-by-step troubleshooting guidance
+    - Validates commit message format and content
+    - Provides examples of correct commit formats
+    - Shows all valid commit types with descriptions
+    - Offers step-by-step troubleshooting guidance
 
 - **Node.js Version Check**:
-  - Validates against `.nvmrc` version
-  - Provides clear installation instructions
-  - Guides users through nvm setup process
+    - Validates against `.nvmrc` version
+    - Provides clear installation instructions
+    - Guides users through nvm setup process
 
 ## 🔍 Debugging
 
@@ -446,16 +446,16 @@ progression:
 
 1. **Development** (`develop`): Ongoing development with alpha/beta/rc
    versioning
-   - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` →
-     `2.0.0-rc.1`
+    - `0.1.0-alpha.1` → `0.1.1-alpha.1` → `0.2.0-alpha.1` → `1.0.0-beta.1` →
+      `2.0.0-rc.1`
 2. **Stable** (`main`): Production-ready releases (1.0.0+)
 
 ### Branch Strategy
 
 - **`develop`**: Development branch with alpha/beta/rc versioning
-  - `0.x.x-alpha.x`: Alpha phase (early development)
-  - `1.x.x-beta.x`: Beta phase (feature complete)
-  - `2.x.x-rc.x`: RC phase (release candidate)
+    - `0.x.x-alpha.x`: Alpha phase (early development)
+    - `1.x.x-beta.x`: Beta phase (feature complete)
+    - `2.x.x-rc.x`: RC phase (release candidate)
 - **`main`**: Stable releases (production-ready versions without pre-release
   labels)
 
@@ -467,12 +467,12 @@ progression:
 3. **Push**: to `develop` branch for development releases, `main` for stable
    releases
 4. **Automatic Process**:
-   - Version bump in `package.json`
-   - Generate release notes from commits
-   - Update `CHANGELOG.md` with new version and commits
-   - Create Git tag (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
-   - Create GitHub release with release notes
-   - Commit updated `CHANGELOG.md` and `package.json` back to repository
+    - Version bump in `package.json`
+    - Generate release notes from commits
+    - Update `CHANGELOG.md` with new version and commits
+    - Create Git tag (e.g., `v0.1.0-alpha.1`, `v1.0.0-beta.1`, `v2.0.0`)
+    - Create GitHub release with release notes
+    - Commit updated `CHANGELOG.md` and `package.json` back to repository
 5. **CI/CD**: GitHub Actions handles the entire release process
 
 ### Version Bumping Rules
@@ -499,19 +499,17 @@ git commit -m "feat: final features before release"
 git push origin develop  # Creates 2.0.0-rc.1 (major bump - RC phase)
 
 # Stable release (when ready for production)
-npm run release:stable
 git push origin main     # Creates stable release (e.g., 2.0.0) without pre-release labels
 ```
 
 ### Release Scripts
 
 ```bash
-# Automated release scripts
-npm run release:develop  # Switch to develop branch for development
-npm run release:stable   # Switch to main branch for stable release
+# Test semantic-release configuration (local testing only)
+npm run release:dry-run  # Test release without publishing
 
 # Manual semantic-release (for testing only)
-npm run release -- --dry-run  # Test release without publishing (local testing only)
+npm run release -- --dry-run  # Alternative dry-run command
 ```
 
 > **⚠️ Important**: Don't run `npm run release` locally without `--dry-run`.
@@ -575,42 +573,67 @@ The changelog is automatically maintained with this structure:
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.0] - 2024-01-15
+## [2.0.0] (https://github.com/rahulmathews/riders-server/releases/tag/v2.0.0) (2024-01-15)
 
-### Added
+Released by: [Rahul](mailto:user@example.com)
 
-- New feature A
-- New feature B
+Release Date: Jan 15, 2024, 2:30 PM CST
 
-### Changed
+### ✨ Features
 
-- Updated existing feature
+- New feature A ([abc1234](https://github.com/rahulmathews/riders-server/commit/abc1234)) - Jan 15, 2024, 2:15 PM CST by [Rahul](mailto:user@example.com)
+- New feature B ([def5678](https://github.com/rahulmathews/riders-server/commit/def5678)) - Jan 15, 2024, 1:45 PM CST by [Rahul](mailto:user@example.com)
 
-### Fixed
+### 🔀 Pull Requests
 
-- Bug fix
+- Merged branch feature/new-features ([ghi9012](https://github.com/rahulmathews/riders-server/commit/ghi9012)) - Jan 15, 2024, 1:30 PM CST by [Rahul](mailto:user@example.com)
 
-## [1.0.0-beta.1] - 2024-01-10
+### 🐛 Bug Fixes
 
-### Added
+- Bug fix ([jkl3456](https://github.com/rahulmathews/riders-server/commit/jkl3456)) - Jan 15, 2024, 1:00 PM CST by [Rahul](mailto:user@example.com)
 
-- Beta feature
+## [1.0.0-beta.1] (https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-beta.1) (2024-01-10)
 
-## [0.2.0-alpha.1] - 2024-01-05
+Released by: [Rahul](mailto:user@example.com)
 
-### Added
+Release Date: Jan 10, 2024, 3:00 PM CST
 
-- Alpha feature
+### ✨ Features
+
+- Beta feature ([mno7890](https://github.com/rahulmathews/riders-server/commit/mno7890)) - Jan 10, 2024, 2:45 PM CST by [Rahul](mailto:user@example.com)
+
+## [0.2.0-alpha.1] (https://github.com/rahulmathews/riders-server/releases/tag/v0.2.0-alpha.1) (2024-01-05)
+
+Released by: [Rahul](mailto:user@example.com)
+
+Release Date: Jan 5, 2024, 1:30 PM CST
+
+### ✨ Features
+
+- Alpha feature ([pqr1234](https://github.com/rahulmathews/riders-server/commit/pqr1234)) - Jan 5, 2024, 1:15 PM CST by [Rahul](mailto:user@example.com)
 ```
 
 #### Commit Tracking
 
 - **Conventional Commits**: All commits are analyzed and categorized
-- **Version Sections**: Each version gets its own section with categorized
-  changes
+- **Emoji Sections**: Commits are organized into emoji-prefixed sections:
+    - ✨ Features (`feat:`)
+    - 🐛 Bug Fixes (`fix:`)
+    - 🔀 Pull Requests (merge commits)
+    - 🏗️ Build System (`build:`)
+    - 📚 Documentation (`docs:`)
+    - 🧪 Tests (`test:`)
+    - ⚡ Performance Improvements (`perf:`)
+    - ♻️ Code Refactoring (`refactor:`)
+    - 👷 Continuous Integration (`ci:`)
+    - 💄 Styles (`style:`)
+    - ⏪ Reverts (`revert:`)
+- **Version Sections**: Each version gets its own section with categorized changes
 - **Breaking Changes**: Highlighted with special formatting
-- **Release Notes**: Generated from commit messages and included in GitHub
-  releases
+- **Release Notes**: Generated from commit messages and included in GitHub releases
+- **Timestamps**: Each commit shows formatted date/time in CST/CDT
+- **Author Links**: Clickable author names with email links
+- **Commit Links**: Short hash display with links to full commit details
 
 #### Formatting Workflow
 
@@ -885,18 +908,18 @@ The application loads environment files in this order (first found wins):
 #### Common Issues
 
 1. **Validation Errors**
-   - Check that required fields are set
-   - Ensure secrets are at least 32 characters
-   - Verify URL formats are correct
+    - Check that required fields are set
+    - Ensure secrets are at least 32 characters
+    - Verify URL formats are correct
 
 2. **Configuration Not Loading**
-   - Check file permissions
-   - Verify file path is correct
-   - Ensure no syntax errors in .env.local file
+    - Check file permissions
+    - Verify file path is correct
+    - Ensure no syntax errors in .env.local file
 
 3. **Type Errors**
-   - Use AppConfigService for type-safe access
-   - Check interface definitions in `env.config.ts`
+    - Use AppConfigService for type-safe access
+    - Check interface definitions in `env.config.ts`
 
 #### Debug Configuration
 
@@ -927,15 +950,15 @@ automatically.
 2. **Push to Branch**: Push to `develop` (alpha) or `main` (stable)
 3. **CI/CD Pipeline**: Single workflow handles testing and releasing
 4. **Release Creation**: Creates GitHub release with:
-   - ✅ Professional release notes
-   - ✅ Categorized changes with emojis
-   - ✅ Changelog updates
-   - ✅ Asset attachments
+    - ✅ Professional release notes
+    - ✅ Categorized changes with emojis
+    - ✅ Changelog updates
+    - ✅ Asset attachments
 
 #### Release Types
 
 | Commit Type       | Version Bump | Example           | Section             |
-| ----------------- | ------------ | ----------------- | ------------------- |
+|-------------------|--------------|-------------------|---------------------|
 | `feat`            | Minor        | `0.1.0` → `0.2.0` | 🚀 Features         |
 | `fix`             | Patch        | `0.1.0` → `0.1.1` | 🐛 Bug Fixes        |
 | `BREAKING CHANGE` | Major        | `0.1.0` → `1.0.0` | ⚠️ Breaking Changes |
@@ -980,32 +1003,32 @@ automatically.
 #### Code Style & Formatting
 
 1. **File** → **Settings** → **Editor** → **Code Style** → **TypeScript**
-   - Set indent: 2 spaces
-   - Enable "Use single quotes in new code"
+    - Set indent: 2 spaces
+    - Enable "Use single quotes in new code"
 
 2. **File** → **Settings** → **Tools** → **Actions on Save**
-   - ✅ Reformat code
-   - ✅ Optimize imports
-   - ✅ Run eslint --fix
+    - ✅ Reformat code
+    - ✅ Optimize imports
+    - ✅ Run eslint --fix
 
 #### ESLint Configuration
 
 1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** →
    **Code Quality Tools** → **ESLint**
-   - ✅ Automatic ESLint configuration
-   - ✅ Run eslint --fix on save
+    - ✅ Automatic ESLint configuration
+    - ✅ Run eslint --fix on save
 
 #### Prettier Configuration
 
 1. **File** → **Settings** → **Languages & Frameworks** → **JavaScript** →
    **Prettier**
-   - ✅ On 'Reformat Code' action
-   - ✅ On save
+    - ✅ On 'Reformat Code' action
+    - ✅ On save
 
 #### Git Integration
 
 1. **File** → **Settings** → **Version Control** → **Git**
-   - ✅ Use credential helper
+    - ✅ Use credential helper
 2. **VCS** → **Git** → **Commit Template**: Use conventional commit format
 
 #### Run Configurations
@@ -1014,10 +1037,10 @@ WebStorm automatically detects npm scripts. Create additional configurations:
 
 1. **Run** → **Edit Configurations** → **Add** → **npm**
 2. Useful configurations:
-   - **Development**: Script `start:dev`
-   - **Debug**: Script `start:debug`
-   - **Build**: Script `build`
-   - **Lint**: Script `lint`
+    - **Development**: Script `start:dev`
+    - **Debug**: Script `start:debug`
+    - **Build**: Script `build`
+    - **Lint**: Script `lint`
 
 #### WebStorm Project Setup
 
