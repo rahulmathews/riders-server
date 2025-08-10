@@ -74,6 +74,12 @@ jobs:
       - name: Build
         run: npm run build
 
+      - name: Create distribution archive
+        run: |
+          cd dist
+          tar -czf ../riders-server-dist.tar.gz .
+          cd ..
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
