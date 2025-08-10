@@ -568,12 +568,19 @@ Release Date: {{formattedReleaseDate}}
       {
         npmPublish: false,
         tarballDir: 'dist',
+        prepareCmd: 'npm run build',
       },
     ],
     [
       '@semantic-release/git',
       {
-        assets: ['CHANGELOG.md', 'package.json', 'package-lock.json', 'README.md'],
+        assets: [
+          'CHANGELOG.md', 
+          'package.json', 
+          'package-lock.json', 
+          'README.md',
+          'dist/**/*'
+        ],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
     ],

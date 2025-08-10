@@ -15,7 +15,7 @@
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
     "commitlint": "commitlint --edit",
-    "prepare": "husky",
+    "prepare": "node -e \"if (process.env.CI !== 'true' && process.env.HUSKY !== '0') { require('child_process').execSync('husky', {stdio: 'inherit'}) }\"",
     "release": "semantic-release",
     "release:dry-run": "semantic-release --dry-run"
   },
