@@ -1,6 +1,6 @@
 {
   "name": "riders-server",
-  "version": "1.0.0-alpha.8",
+  "version": "1.0.0-alpha.9",
   "description": "A comprehensive backend API for a modern ride-sharing platform built with NestJS, GraphQL, and self-hosted Supabase, providing real-time ride matching, location tracking, and seamless payment processing.",
   "main": "dist/main.js",
   "scripts": {

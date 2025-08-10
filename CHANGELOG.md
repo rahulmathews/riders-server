@@ -1,4 +1,11 @@
+## [1.0.0-alpha.9](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.9) (2025-08-10)
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
 
+Release Date: Aug 10, 2025, 1:33 PM CDT
+
+### 🐛 Bug Fixes
+
+- removed changelog headers ([604b61d](https://github.com/rahulmathews/riders-server/commit/604b61db2796025043f951f1b9cf899ff00de143)) - Aug 10, 2025, 1:32 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
 
 ## [1.0.0-alpha.8](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.8) (2025-08-10)
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
