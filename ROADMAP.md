@@ -36,7 +36,7 @@ implement the MVP as a NestJS GraphQL API with self-hosted Supabase.
 - [x] Configure Husky for pre-commit hooks
 - [x] Set up commit message linting with commitlint
 - [x] Configure semantic release for automated versioning
-- [ ] Implement environment-specific configurations (.env files)
+- [x] Implement environment-specific configurations (.env files)
 - [ ] Configure path aliases for clean imports (@src, @modules, etc.)
 - [ ] Set up source maps for debugging
 - [ ] NestJS application setup with GraphQL

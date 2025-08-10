@@ -4,6 +4,7 @@
   "description": "A comprehensive backend API for a modern ride-sharing platform built with NestJS, GraphQL, and self-hosted Supabase, providing real-time ride matching, location tracking, and seamless payment processing.",
   "main": "dist/main.js",
   "scripts": {
+    "preinstall": "node scripts/check-node-version.js",
     "build": "nest build",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -21,8 +22,10 @@
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "joi": "^18.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.1"
   },

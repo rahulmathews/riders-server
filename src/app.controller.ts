@@ -19,4 +19,9 @@ export class AppController {
       service: 'riders-server',
     };
   }
+
+  @Get('config')
+  getEnvironmentInfo(): object {
+    return this.appService.getEnvironmentInfo();
+  }
 }

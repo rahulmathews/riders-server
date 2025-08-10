@@ -9,6 +9,10 @@ A comprehensive guide for developers working on the Riders Server project.
 git clone https://github.com/your-username/riders-server.git
 cd riders-server
 
+# Setup Node.js version (if using nvm)
+nvm install
+nvm use
+
 # Install dependencies
 npm install
 
@@ -22,10 +26,45 @@ npm run start:prod
 
 ## 📋 Prerequisites
 
-- **Node.js** (v18+)
-- **npm** or yarn
+- **Node.js** (v20.15.0) - Managed via nvm
+- **npm** (v10.0.0+)
 - **Git**
 - **IDE**: JetBrains WebStorm (recommended)
+
+## 🔧 Node.js Version Management
+
+This project uses **Node.js v20.15.0** managed via nvm (Node Version Manager).
+
+### Setup nvm and Node.js
+
+1. **Install nvm** (if not already installed):
+
+   ```bash
+   # Windows (using nvm-windows)
+   # Download from: https://github.com/coreybutler/nvm-windows/releases
+
+   # macOS/Linux
+   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+   ```
+
+2. **Install and use the correct Node.js version**:
+
+   ```bash
+   nvm install
+   nvm use
+   ```
+
+3. **Verify the version**:
+   ```bash
+   node --version  # Should show v20.15.0
+   npm --version   # Should show v10.0.0+
+   ```
+
+### Automatic Version Check
+
+The project automatically checks your Node.js version on `npm install`. If
+you're using the wrong version, you'll see an error message with instructions to
+fix it.
 
 ### WebStorm Setup
 
@@ -179,6 +218,7 @@ riders-server/
 ├── .husky/                # Git hooks
 │   ├── pre-commit         # Pre-commit quality checks
 │   └── commit-msg         # Commit message validation
+├── .nvmrc                 # Node.js version specification
 ├── .eslintrc.js           # ESLint configuration
 ├── .prettierrc            # Prettier configuration
 ├── .prettierignore        # Prettier ignore patterns
@@ -478,6 +518,290 @@ All notable changes to this project will be documented in this file.
 5. **Push**: `git push origin feat/your-feature`
 6. **PR**: Create pull request with clear description
 
+## 🌍 Environment Configuration
+
+This section explains how to set up environment-specific configurations for the
+Riders Server application.
+
+### 📁 Configuration Files
+
+#### Environment Files
+
+- `.env.example` - MVP minimal template with essential configurations
+- `.env.local` - Your local environment file (create from .env.example)
+- `.env.development` - Development environment template
+- `.env.production` - Production environment template
+
+#### Configuration Modules
+
+- `src/config/env.config.ts` - Environment variable definitions and types
+- `src/config/config.module.ts` - NestJS configuration module with validation
+
+### 🚀 Quick Setup
+
+#### 1. Create Your Environment File
+
+Copy the example file and rename it to `.env.local`:
+
+```bash
+cp .env.example .env.local
+```
+
+#### 2. Update Required Variables
+
+For MVP development, you only need to set these essential variables:
+
+```bash
+# Database (Required)
+DATABASE_URL=postgresql://username:password@localhost:5432/riders_db
+
+# Authentication (Required)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-minimum-32-chars
+REFRESH_TOKEN_SECRET=your-refresh-token-secret-key-change-this-in-production
+
+# Supabase (Required when using Supabase)
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_ANON_KEY=your-supabase-anon-key
+SUPABASE_SERVICE_ROLE_KEY=your-supabase-service-role-key
+```
+
+#### 3. Start the Application
+
+```bash
+npm run start:dev
+```
+
+### 🔧 Configuration Categories
+
+#### MVP Core Configuration (Required)
+
+- `NODE_ENV` - Environment (local, development, production, test, staging)
+- `PORT` - Server port (default: 3000)
+- `HOST` - Server host (default: localhost)
+
+#### Database Configuration (Required)
+
+- `DATABASE_URL` - PostgreSQL connection string
+- `SUPABASE_URL` - Supabase project URL
+- `SUPABASE_ANON_KEY` - Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key
+
+#### Authentication & Security (Required)
+
+- `JWT_SECRET` - JWT signing secret (min 32 chars)
+- `JWT_EXPIRES_IN` - JWT expiration time
+- `REFRESH_TOKEN_SECRET` - Refresh token secret (min 32 chars)
+- `REFRESH_TOKEN_EXPIRES_IN` - Refresh token expiration
+- `BCRYPT_ROUNDS` - Password hashing rounds (10-14)
+
+#### Development Features (GraphQL & API)
+
+- `DEBUG` - Enable debug mode
+- `ENABLE_SWAGGER` - Enable API documentation
+- `ENABLE_GRAPHQL_PLAYGROUND` - Enable GraphQL playground
+- `LOG_LEVEL` - Logging level (debug, info, warn, error)
+
+#### Feature Flags (MVP Core Features)
+
+- `ENABLE_REAL_TIME_TRACKING` - Enable real-time features
+- `ENABLE_PUSH_NOTIFICATIONS` - Enable push notifications (disabled for MVP)
+- `ENABLE_SMS_NOTIFICATIONS` - Enable SMS notifications (disabled for MVP)
+- `ENABLE_EMAIL_NOTIFICATIONS` - Enable email notifications (disabled for MVP)
+
+#### Optional Services (Add as needed)
+
+- `GOOGLE_MAPS_API_KEY` - Google Maps API key (for location services)
+- `REDIS_URL` - Redis connection (for caching - not needed in MVP)
+- `STRIPE_SECRET_KEY` - Stripe secret key (for payments - Phase 2)
+- `TWILIO_ACCOUNT_SID` - Twilio account SID (for SMS - Phase 2)
+- `FIREBASE_PROJECT_ID` - Firebase project ID (for push notifications - Phase 2)
+
+### 🛡️ Security Best Practices
+
+#### 1. Never Commit Environment Files
+
+```bash
+# These files are already in .gitignore
+.env.local
+.env.development
+.env.production
+.env.test
+.env.staging
+```
+
+#### 2. Use Strong Secrets
+
+```bash
+# Good examples (32+ characters)
+JWT_SECRET=your-super-secret-jwt-key-change-this-in-production-minimum-32-chars
+REFRESH_TOKEN_SECRET=your-refresh-token-secret-key-change-this-in-production
+
+# Bad examples (too short)
+JWT_SECRET=secret
+REFRESH_TOKEN_SECRET=token
+```
+
+#### 3. Environment-Specific Secrets
+
+- **Development**: Use weak secrets for local development
+- **Production**: Use strong, unique secrets
+- **Staging**: Use production-like secrets
+
+### 🔍 Validation
+
+The configuration is validated using Joi schema validation:
+
+- **Required fields** are validated on startup
+- **Type validation** ensures correct data types
+- **Format validation** for URLs, emails, etc.
+- **Length validation** for secrets
+
+#### Validation Errors
+
+If validation fails, you'll see errors like:
+
+```
+Config validation error: "JWT_SECRET" length must be at least 32 characters long
+Config validation error: "DATABASE_URL" is required
+```
+
+### 💻 Usage in Code
+
+#### Using ConfigService (Recommended)
+
+```typescript
+import { ConfigService } from '@nestjs/config';
+
+@Injectable()
+export class MyService {
+  constructor(private configService: ConfigService) {}
+
+  // Access typed configuration
+  getDatabaseUrl(): string {
+    return this.configService.get<string>('database.url')!;
+  }
+
+  // Access app configuration
+  getNodeEnv(): string {
+    return this.configService.get<string>('app.nodeEnv')!;
+  }
+
+  // Environment checks
+  isDevelopment(): boolean {
+    return this.configService.get<string>('app.nodeEnv') === 'development';
+  }
+
+  isLocal(): boolean {
+    return this.configService.get<string>('app.nodeEnv') === 'local';
+  }
+
+  isProduction(): boolean {
+    return this.configService.get<string>('app.nodeEnv') === 'production';
+  }
+
+  // Feature flags
+  isRealTimeTrackingEnabled(): boolean {
+    return this.configService.get<boolean>(
+      'featureFlags.enableRealTimeTracking',
+    )!;
+  }
+}
+```
+
+### 🌍 Environment-Specific Configurations
+
+#### Local Environment
+
+```bash
+NODE_ENV=local
+DEBUG=true
+ENABLE_SWAGGER=true
+ENABLE_GRAPHQL_PLAYGROUND=true
+LOG_LEVEL=debug
+```
+
+#### Development Environment
+
+```bash
+NODE_ENV=development
+DEBUG=true
+ENABLE_SWAGGER=true
+ENABLE_GRAPHQL_PLAYGROUND=true
+LOG_LEVEL=debug
+```
+
+#### Production Environment
+
+```bash
+NODE_ENV=production
+DEBUG=false
+ENABLE_SWAGGER=false
+ENABLE_GRAPHQL_PLAYGROUND=false
+LOG_LEVEL=info
+```
+
+#### Testing Environment
+
+```bash
+NODE_ENV=test
+DEBUG=false
+ENABLE_SWAGGER=false
+ENABLE_GRAPHQL_PLAYGROUND=false
+LOG_LEVEL=error
+```
+
+### 🔄 Environment File Loading Order
+
+The application loads environment files in this order (first found wins):
+
+1. `.env.local` (highest priority for local development)
+2. `.env.development` (if NODE_ENV=development)
+3. `.env.production` (if NODE_ENV=production)
+4. `.env` (fallback)
+
+**Environment File Strategy:**
+
+- **`.env.local`**: Your personal local development settings (highest priority,
+  NODE_ENV=local)
+- **`.env.development`**: Team-shared development defaults
+  (NODE_ENV=development)
+- **`.env.production`**: Production environment template (NODE_ENV=production)
+- **`.env.example`**: MVP minimal template for new developers
+
+### 🚨 Troubleshooting
+
+#### Common Issues
+
+1. **Validation Errors**
+   - Check that required fields are set
+   - Ensure secrets are at least 32 characters
+   - Verify URL formats are correct
+
+2. **Configuration Not Loading**
+   - Check file permissions
+   - Verify file path is correct
+   - Ensure no syntax errors in .env.local file
+
+3. **Type Errors**
+   - Use AppConfigService for type-safe access
+   - Check interface definitions in `env.config.ts`
+
+#### Debug Configuration
+
+Add this endpoint to check your configuration:
+
+```typescript
+@Get('config')
+getEnvironmentInfo()
+:
+object
+{
+    return this.appService.getEnvironmentInfo();
+}
+```
+
+Visit `http://localhost:3000/config` to see your current configuration.
+
 ## 📞 Getting Help
 
 - **Documentation**: Check README.md and ROADMAP.md
@@ -565,7 +889,3 @@ git config core.autocrlf false
 - **Dependencies**: Keep track of security vulnerabilities
 
 ---
-
-**Last Updated**: [Current Date]  
-**Maintainer**: Development Team  
-**Questions?** Create an issue or check the README.md
