@@ -573,7 +573,7 @@ Release Date: {{formattedReleaseDate}}
           'package.json', 
           'package-lock.json', 
           'README.md',
-          'dist/**/*'
+          'dist'
         ],
         message: 'chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}',
       },
@@ -585,8 +585,8 @@ Release Date: {{formattedReleaseDate}}
         {
           assets: [
             {
-              path: 'dist/**/*',
-              label: 'Build Artifacts',
+              path: 'dist',
+              label: 'build',
             },
           ],
         },
