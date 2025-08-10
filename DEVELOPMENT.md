@@ -802,6 +802,58 @@ object
 
 Visit `http://localhost:3000/config` to see your current configuration.
 
+## 🚀 Release Management
+
+### Automatic GitHub Releases
+
+The project uses semantic-release to create professional GitHub releases
+automatically.
+
+#### How It Works
+
+1. **Conventional Commits**: Write commits using conventional format
+2. **Push to Branch**: Push to `develop` (alpha) or `main` (stable)
+3. **CI/CD Pipeline**: Single workflow handles testing and releasing
+4. **Release Creation**: Creates GitHub release with:
+   - ✅ Professional release notes
+   - ✅ Categorized changes with emojis
+   - ✅ Changelog updates
+   - ✅ Asset attachments
+
+#### Release Types
+
+| Commit Type       | Version Bump | Example           | Section             |
+| ----------------- | ------------ | ----------------- | ------------------- |
+| `feat`            | Minor        | `0.1.0` → `0.2.0` | 🚀 Features         |
+| `fix`             | Patch        | `0.1.0` → `0.1.1` | 🐛 Bug Fixes        |
+| `BREAKING CHANGE` | Major        | `0.1.0` → `1.0.0` | ⚠️ Breaking Changes |
+| `docs`            | Patch        | `0.1.0` → `0.1.1` | 📚 Documentation    |
+| `style`           | Patch        | `0.1.0` → `0.1.1` | 💄 Styles           |
+| `refactor`        | Patch        | `0.1.0` → `0.1.1` | ♻️ Code Refactoring |
+
+#### Branch Strategy
+
+- **`develop` branch**: Alpha releases (`0.1.0-alpha.1`)
+- **`main` branch**: Stable releases (`1.0.0`)
+
+#### Example Release Notes
+
+```markdown
+## 🚀 Features
+
+- feat(auth): add JWT token validation
+- feat(api): implement user profile endpoints
+
+## 🐛 Bug Fixes
+
+- fix(db): resolve connection timeout issue
+- fix(api): handle null user data gracefully
+
+## 📚 Documentation
+
+- docs(readme): update installation instructions
+```
+
 ## 📞 Getting Help
 
 - **Documentation**: Check README.md and ROADMAP.md
