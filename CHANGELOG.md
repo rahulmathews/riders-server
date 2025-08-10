@@ -1,3 +1,13 @@
+## [1.0.0-alpha.15](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.15) (2025-08-10)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 10, 2025, 3:39 PM CDT
+
+### 🐛 Bug Fixes
+
+- moved sourcemaps to later stages ([14ccb77](https://github.com/rahulmathews/riders-server/commit/14ccb77e3949fb5f4145a61575d8ed75fffd3fbe)) - Aug 10, 2025, 3:37 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.14](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.14) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
