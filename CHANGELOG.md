@@ -3,6 +3,13 @@
 All notable changes to this project will be documented in this file.
 
 
+# [1.0.0-alpha.7](https://github.com/rahulmathews/riders-server/compare/v1.0.0-alpha.6...v1.0.0-alpha.7) (2025-08-10)
+
+
+### Bug Fixes
+
+* empty commit ([7fbb0ca](https://github.com/rahulmathews/riders-server/commit/7fbb0caf4567c767285ab7731f449192cac61d7f))
+
 # [1.0.0-alpha.6](https://github.com/rahulmathews/riders-server/compare/v1.0.0-alpha.5...v1.0.0-alpha.6) (2025-08-10)
 
 # [1.0.0-alpha.5](https://github.com/rahulmathews/riders-server/compare/v1.0.0-alpha.4...v1.0.0-alpha.5) (2025-08-10)
