@@ -1,3 +1,13 @@
+## [1.0.0-alpha.17](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.17) (2025-08-11)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 11, 2025, 1:47 PM CDT
+
+### 🐛 Bug Fixes
+
+- cleaned up and updated .env files ([bca71fd](https://github.com/rahulmathews/riders-server/commit/bca71fd6297ac1af7ffcedd0f85b4ff023163c21)) - Aug 11, 2025, 9:39 AM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.16](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.16) (2025-08-10)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
