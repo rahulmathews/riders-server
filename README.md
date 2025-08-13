@@ -4,6 +4,7 @@
 [![TypeScript](https://img.shields.io/badge/typescript-5.3.3-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![NestJS](https://img.shields.io/badge/nestjs-10.0.0-red?style=flat-square&logo=nestjs)](https://nestjs.com/)
 [![License](https://img.shields.io/badge/license-MIT-green?style=flat-square)](LICENSE)
+[![CI/CD Pipeline](https://github.com/rahulmathews/riders-server/actions/workflows/ci-release.yml/badge.svg)](https://github.com/rahulmathews/riders-server/actions/workflows/ci-release.yml)
 
 A comprehensive backend API for a modern ride-sharing platform built with
 NestJS, GraphQL, and self-hosted Supabase, providing real-time ride matching,
