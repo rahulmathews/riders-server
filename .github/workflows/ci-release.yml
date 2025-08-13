@@ -53,22 +53,20 @@ jobs:
     runs-on: ubuntu-latest
     needs: test
     if:
-      github.event_name == 'push' || (github.event_name == 'workflow_dispatch'
-      && github.event.inputs.approve_release == 'true')
+      github.event_name == 'workflow_dispatch' &&
+      github.event.inputs.approve_release == 'true'
     permissions:
       contents: write
       issues: write
       pull-requests: write
     steps:
-      - name: Manual Approval Check
-        if: github.event_name == 'push'
+      - name: Release Approval Check
         uses: actions/github-script@v7
         with:
           script: |
             const branch = '${{ github.ref_name }}';
-            console.log(`🚀 Release deployment from ${branch} branch`);
-            console.log('⏳ Manual approval required - please run workflow manually with approval');
-            console.log('📋 Go to Actions tab and click "Run workflow" with approve_release=true');
+            console.log(`🚀 Manual release approved for ${branch} branch`);
+            console.log('✅ Release will now execute with semantic-release');
 
       - name: Checkout
         uses: actions/checkout@v4
