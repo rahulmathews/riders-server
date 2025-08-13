@@ -109,12 +109,7 @@ import {
         allowUnknown: true,
         abortEarly: false,
       },
-      envFilePath: [
-        '.env.local',
-        '.env.development',
-        '.env.production',
-        '.env',
-      ],
+      envFilePath: ['.env', '.env.development', '.env.production'],
     }),
   ],
 })
