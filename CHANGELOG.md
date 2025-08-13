@@ -1,3 +1,13 @@
+## [1.0.0-alpha.18](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.18) (2025-08-13)
+
+Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
+Release Date: Aug 13, 2025, 1:20 PM CDT
+
+### 🐛 Bug Fixes
+
+- added Manual release config and fixed the priority order of env files ([e173060](https://github.com/rahulmathews/riders-server/commit/e17306075c7daec6a7709fb27eafdeb2080be90b)) - Aug 13, 2025, 1:19 PM CDT by [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
+
 ## [1.0.0-alpha.17](https://github.com/rahulmathews/riders-server/releases/tag/v1.0.0-alpha.17) (2025-08-11)
 
 Released by: [Rahul](mailto:27402666+rahulmathews@users.noreply.github.com)
